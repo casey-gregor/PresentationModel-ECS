@@ -15,3 +15,10 @@ MonoBehaviour:
   playerName: Vasiliy
   playerDescription: The best samogon maker
   playerAvatar: {fileID: 21300000, guid: 954d79ad0f5124da59b33552ab47a641, type: 3}
+  playerExperience: 0
+  moveSpeed: 2
+  intelligence: 31
+  stamina: 1
+  damage: 6
+  dexterity: 23
+  regeneration: 15

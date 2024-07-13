@@ -14,7 +14,7 @@ public class PopupView : MonoBehaviour
     [SerializeField] private LevelUpButton levelUpButton;
     [SerializeField] private OutsideButton closeButton;
 
-    [SerializeField] private Stat[] stats;
+    [SerializeField] private StatSlot[] statSlots;
 
     private PlayerStat[] existingStats;
 
@@ -27,14 +27,11 @@ public class PopupView : MonoBehaviour
 
     public void ShowPopup(IPresenter presenter)
     {
-        gameObject.SetActive(true);
+        this.gameObject.SetActive(true);
 
         this.presenter = presenter;
 
-        this.heroAva.sprite = this.presenter.UserInfo.Icon;
-        this.heroName.text = this.presenter.UserInfo.Name;
-        this.heroDescription.text = this.presenter.UserInfo.Description;
-
+        UpdateUserInfo();
         UpdateLevelText();
         UpdateXPtext();
         UpdateSliderValues();
@@ -42,18 +39,29 @@ public class PopupView : MonoBehaviour
         this.presenter.PlayerLevel.OnExperienceChanged += HandleXPUpdateEvent;
         this.presenter.PlayerLevel.OnLevelUp += HandleLevelUpdateEvent;
 
-        existingStats = this.presenter.Stats.GetStats();
+        this.existingStats = this.presenter.Stats.GetStats();
 
-        for(int i = 0; i < existingStats.Length; i++)
+        for (int i = 0; i < this.statSlots.Length; i++)
         {
-            if (stats[i] != null)
+            if (i < this.existingStats.Length)
             {
-                UpdateStatsText(stats[i], existingStats[i]);
+                UpdateStatsText(this.statSlots[i], this.existingStats[i]);
+            }
+            else
+            {
+                this.statSlots[i].StatObject.SetActive(false);
             }
         }
 
         this.levelUpButton.Button.onClick.AddListener(this.presenter.PlayerLevel.LevelUp); ;
         SetLevelUpButtonState();
+    }
+
+    private void UpdateUserInfo()
+    {
+        this.heroAva.sprite = this.presenter.UserInfo.Icon;
+        this.heroName.text = this.presenter.UserInfo.Name;
+        this.heroDescription.text = this.presenter.UserInfo.Description;
     }
     private void UpdateLevelText()
     {
@@ -91,17 +99,15 @@ public class PopupView : MonoBehaviour
     {
         for(int i = 0; i < existingStats.Length; i++)
         {
-            UpdateStatsText(stats[i], existingStats[i]);
+            UpdateStatsText(statSlots[i], existingStats[i]);
         }
     }
 
-    private void UpdateStatsText(Stat statTo, PlayerStat statFrom)
+    private void UpdateStatsText(StatSlot statTo, PlayerStat statFrom)
     {
         TextMeshProUGUI textMeshPro = statTo.StatObject.GetComponentInChildren<TextMeshProUGUI>();
         textMeshPro.text = $"{statFrom.Name} : {statFrom.Value}";
     }
-
-   
 
     private void HandleXPUpdateEvent(int value)
     {

@@ -1,22 +1,25 @@
 
-using UnityEngine;
 
-public sealed class XPController
+
+namespace Lessons.Architecture.PM
 {
-    private IPresenter currentPresenter;
-    private PresenterFactory presenterFactory;
-    public XPController(PresenterFactory factory)
+    public sealed class XPController
     {
-        this.presenterFactory = factory;
-    }
-
-    public void UpdateXP(int value)
-    {
-        if (this.presenterFactory.CurrentPresent != null)
+        private IPresenter currentPresenter;
+        private PresenterFactory presenterFactory;
+        public XPController(PresenterFactory factory)
         {
-            this.currentPresenter = this.presenterFactory.CurrentPresent;
-            this.currentPresenter.PlayerLevel.AddExperience(value);
-            //Debug.Log($"{value} added to {this.currentPresenter.UserInfo.Name}");
+            this.presenterFactory = factory;
+        }
+
+        public void UpdateXP(int value)
+        {
+            if (this.presenterFactory.CurrentPresenter != null)
+            {
+                this.currentPresenter = this.presenterFactory.CurrentPresenter;
+                this.currentPresenter.PlayerLevel.AddExperience(value);
+            }
         }
     }
+
 }

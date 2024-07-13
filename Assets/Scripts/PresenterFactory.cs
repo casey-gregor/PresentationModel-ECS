@@ -1,19 +1,22 @@
-
 using System;
 
-public class PresenterFactory
+namespace Lessons.Architecture.PM
 {
-    private IPresenter currentPresenter;
-    public IPresenter CurrentPresent {  get { return currentPresenter; } }
-
-    public event Action<IPresenter> presenterCreatedEvent;
-
-    public IPresenter CreatePresenter(PlayerConfig playerConfig)
+    public class PresenterFactory
     {
-        IPresenter presenter = new Player(playerConfig);
-        this.currentPresenter = presenter;
-        presenterCreatedEvent?.Invoke(this.currentPresenter);
-        return presenter;
-    }
+        private IPresenter currentPresenter;
+        public IPresenter CurrentPresenter {  get { return currentPresenter; } }
+
+        public event Action<IPresenter> presenterCreatedEvent;
+
+        public IPresenter CreatePresenter(PlayerConfig playerConfig)
+        {
+            IPresenter presenter = new Player(playerConfig);
+            this.currentPresenter = presenter;
+            presenterCreatedEvent?.Invoke(this.currentPresenter);
+            return presenter;
+        }
    
+    }
+
 }

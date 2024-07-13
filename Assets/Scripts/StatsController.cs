@@ -1,31 +1,34 @@
 
-using Lessons.Architecture.PM;
 
-public class StatsController
+namespace Lessons.Architecture.PM
 {
-    private PresenterFactory presenterFactory;
-    private ActionHelper actionHelper;
-    public StatsController(PresenterFactory presenterFactory, ActionHelper actionHelper)
-    {
-        this.presenterFactory = presenterFactory;
-        this.actionHelper = actionHelper;
 
-        this.presenterFactory.presenterCreatedEvent += HandlePresenterCreatedEvent;
-    }
-
-    private void HandlePresenterCreatedEvent(IPresenter presenter)
+    public class StatsController
     {
-        presenter.PlayerLevel.OnLevelUp += UpdateStats;
-    }
-
-    private void UpdateStats()
-    {
-        IPresenter currentPresenter = this.presenterFactory.CurrentPresent;
-        PlayerStat[] currentStats = currentPresenter.Stats.GetStats();
-        foreach (PlayerStat stat in currentStats)
+        private PresenterFactory presenterFactory;
+        private ActionHelper actionHelper;
+        public StatsController(PresenterFactory presenterFactory, ActionHelper actionHelper)
         {
-            int currentValue = stat.Value;
-            stat.ChangeValue(currentValue + actionHelper.StatToAdd);
+            this.presenterFactory = presenterFactory;
+            this.actionHelper = actionHelper;
+
+            this.presenterFactory.presenterCreatedEvent += HandlePresenterCreatedEvent;
+        }
+
+        private void HandlePresenterCreatedEvent(IPresenter presenter)
+        {
+            presenter.PlayerLevel.OnLevelUp += UpdateStats;
+        }
+
+        private void UpdateStats()
+        {
+            IPresenter currentPresenter = this.presenterFactory.CurrentPresenter;
+            PlayerStat[] currentStats = currentPresenter.Stats.GetStats();
+            foreach (PlayerStat stat in currentStats)
+            {
+                int currentValue = stat.Value;
+                stat.ChangeValue(currentValue + actionHelper.StatToAdd);
+            }
         }
     }
 }

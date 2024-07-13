@@ -4,7 +4,8 @@ namespace Lessons.Architecture.PM
 {
     public sealed class PlayerStat
     {
-        public event Action<int> OnValueChanged; 
+
+        public event Action<int> OnValueChanged;
 
         public string Name { get; private set; }
 
@@ -20,6 +21,11 @@ namespace Lessons.Architecture.PM
         {
             this.Value = value;
             this.OnValueChanged?.Invoke(value);
+        }
+
+        public void ChangeName(string name)
+        {
+            this.Name = name;
         }
     }
 }

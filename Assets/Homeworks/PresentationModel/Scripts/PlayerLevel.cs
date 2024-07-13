@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace Lessons.Architecture.PM
 {
@@ -16,11 +17,21 @@ namespace Lessons.Architecture.PM
             get { return 100 * (this.CurrentLevel + 1); }
         }
 
-        public void AddExperience(int range)
+        private int unusedExperience;
+
+        public void AddExperience(int value)
         {
-            var xp = Math.Min(this.CurrentExperience + range, this.RequiredExperience);
-            this.CurrentExperience = xp;
-            this.OnExperienceChanged?.Invoke(xp);
+            int newTotalXP = this.CurrentExperience + value;
+
+            unusedExperience = Mathf.Abs(this.RequiredExperience - newTotalXP);
+            Debug.Log("unusedxp : " + unusedExperience);
+
+            var xpToAdd = Math.Min(newTotalXP, this.RequiredExperience);
+            Debug.Log("xp to add : " + xpToAdd);
+
+            this.CurrentExperience = xpToAdd;
+            this.OnExperienceChanged?.Invoke(xpToAdd);
+
         }
 
         public void LevelUp()
@@ -29,6 +40,7 @@ namespace Lessons.Architecture.PM
             {
                 this.CurrentExperience = 0;
                 this.CurrentLevel++;
+                AddUnusedExperience();
                 this.OnLevelUp?.Invoke();
             }
         }
@@ -36,6 +48,14 @@ namespace Lessons.Architecture.PM
         public bool CanLevelUp()
         {
             return this.CurrentExperience == this.RequiredExperience;
+        }
+
+        private void AddUnusedExperience()
+        {
+            if(unusedExperience > 0)
+            {
+                AddExperience(unusedExperience);
+            }
         }
     }
 }

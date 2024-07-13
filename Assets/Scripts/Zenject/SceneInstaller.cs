@@ -1,13 +1,17 @@
 using UnityEngine;
 using Zenject;
 
-public class SceneInstaller : MonoInstaller
+namespace Lessons.Architecture.PM
 {
-    [SerializeField] private ActionHelper actionHelper;
-    public override void InstallBindings()
+    public class SceneInstaller : MonoInstaller
     {
-        Container.Bind<PresenterFactory>().AsSingle().NonLazy();
-        Container.Bind<XPController>().AsSingle().NonLazy();
-        Container.Bind<StatsController>().AsSingle().WithArguments(actionHelper).NonLazy();
+        [SerializeField] private ActionHelper actionHelper;
+        public override void InstallBindings()
+        {
+            Container.Bind<PresenterFactory>().AsSingle().NonLazy();
+            Container.Bind<XPController>().AsSingle().NonLazy();
+            Container.Bind<StatsController>().AsSingle().WithArguments(actionHelper).NonLazy();
+        }
     }
+
 }
