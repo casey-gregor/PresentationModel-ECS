@@ -1,34 +1,47 @@
 using System;
+using UniRx;
 using UnityEngine;
 
 namespace Lessons.Architecture.PM
 {
-    public sealed class PlayerLevel
+    public sealed class PlayerLevel : IDisposable
     {
         public event Action OnLevelUp;
         public event Action<int> OnExperienceChanged;
 
-        public int CurrentLevel { get; private set; } = 1;
+        public IReadOnlyReactiveProperty<int> CurrentLevel => currentLevel;
+        private readonly ReactiveProperty<int> currentLevel = new();
 
-        public int CurrentExperience { get; private set; }
+        public IReadOnlyReactiveProperty<int> CurrentExperience => currentExperience;
+        private readonly ReactiveProperty<int> currentExperience = new();
 
-        public int RequiredExperience
-        {
-            get { return 100 * (this.CurrentLevel + 1); }
-        }
+        public IReadOnlyReactiveProperty<int> RequiredExperience => requiredExperience;
+        private readonly ReactiveProperty<int> requiredExperience = new();
+
 
         private int unusedExperience;
+        private IDisposable disposable;
+
+        public PlayerLevel()
+        {
+            currentLevel.Value = 1;
+            this.disposable = this.currentLevel.Subscribe(HandleUpdateOfRequiredExperience);
+        }
+
+        private void HandleUpdateOfRequiredExperience(int _)
+        {
+            this.requiredExperience.Value = 100 *(this.currentLevel.Value + 1);
+        }
 
         public void AddExperience(int value)
         {
-            int newTotalXP = this.CurrentExperience + value;
+            int newTotalXP = this.currentExperience.Value + value;
 
-            unusedExperience = Mathf.Abs(this.RequiredExperience - newTotalXP);
+            this.unusedExperience = Mathf.Abs(this.requiredExperience.Value - newTotalXP);
 
-            var xpToAdd = Math.Min(newTotalXP, this.RequiredExperience);
+            var xpToAdd = Math.Min(newTotalXP, this.requiredExperience.Value);
 
-            this.CurrentExperience = xpToAdd;
-            this.OnExperienceChanged?.Invoke(xpToAdd);
+            this.currentExperience.SetValueAndForceNotify(this.currentExperience.Value = xpToAdd);
 
         }
 
@@ -36,8 +49,8 @@ namespace Lessons.Architecture.PM
         {
             if (this.CanLevelUp())
             {
-                this.CurrentExperience = 0;
-                this.CurrentLevel++;
+                this.currentExperience.SetValueAndForceNotify(this.currentExperience.Value = 0);
+                this.currentLevel.Value++;
                 AddUnusedExperience();
                 this.OnLevelUp?.Invoke();
             }
@@ -45,15 +58,20 @@ namespace Lessons.Architecture.PM
 
         public bool CanLevelUp()
         {
-            return this.CurrentExperience == this.RequiredExperience;
+            return this.CurrentExperience.Value == this.RequiredExperience.Value;
         }
 
         private void AddUnusedExperience()
         {
-            if(unusedExperience > 0)
+            if(this.unusedExperience > 0)
             {
-                AddExperience(unusedExperience);
+                AddExperience(this.unusedExperience);
             }
+        }
+
+        public void Dispose()
+        {
+            this.disposable.Dispose();
         }
     }
 }

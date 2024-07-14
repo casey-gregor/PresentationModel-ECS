@@ -1,10 +1,13 @@
 using Lessons.Architecture.PM;
 using TMPro;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PopupView : MonoBehaviour
 {
+    public IPresenter presenter { get; private set; }
+    
     [SerializeField] private Image heroAva;
     [SerializeField] private TextMeshProUGUI heroName;
     [SerializeField] private TextMeshProUGUI heroDescription;
@@ -18,20 +21,25 @@ public class PopupView : MonoBehaviour
 
     private PlayerStat[] existingStats;
 
-    public IPresenter presenter { get; private set; }
+    private CompositeDisposable compositeDisposable;
+
 
     public void ShowPopup(IPresenter presenter)
     {
-        this.gameObject.SetActive(true);
-
         this.presenter = presenter;
+
+        if (this.gameObject.activeSelf == false)
+        {
+            this.gameObject.SetActive(true);
+            this.compositeDisposable = new CompositeDisposable();
+        }
 
         UpdateUserInfo();
         UpdateLevelText();
         UpdateXPtext();
         UpdateSliderValues();
 
-        this.existingStats = this.presenter.Stats.GetStats();
+        this.existingStats = this.presenter.GetStats();
 
         for (int i = 0; i < this.statSlots.Length; i++)
         {
@@ -45,9 +53,9 @@ public class PopupView : MonoBehaviour
             }
         }
 
-        this.presenter.PlayerLevel.OnExperienceChanged += HandleXPUpdateEvent;
-        this.presenter.PlayerLevel.OnLevelUp += HandleLevelUpdateEvent;
-        this.levelUpButton.Button.onClick.AddListener(this.presenter.PlayerLevel.LevelUp);
+        this.presenter.CurrentExperience.Subscribe(HandleXPUpdateEvent).AddTo(compositeDisposable);
+        this.presenter.Level.Subscribe(HandleLevelUpdateEvent).AddTo(compositeDisposable);
+        this.levelUpButton.Button.onClick.AddListener(this.presenter.LevelUp);
         this.closeButton.closeEvent += HidePopup;
 
         SetLevelUpButtonState();
@@ -55,47 +63,47 @@ public class PopupView : MonoBehaviour
 
     private void UpdateUserInfo()
     {
-        this.heroAva.sprite = this.presenter.UserInfo.Icon;
-        this.heroName.text = this.presenter.UserInfo.Name;
-        this.heroDescription.text = this.presenter.UserInfo.Description;
+        this.heroAva.sprite = this.presenter.Icon;
+        this.heroName.text = this.presenter.Name;
+        this.heroDescription.text = this.presenter.Description;
     }
     private void UpdateLevelText()
     {
-        int level = this.presenter.PlayerLevel.CurrentLevel;
+        int level = this.presenter.Level.Value;
         this.levelNumber.text = $"Level: {level}";
     }
 
     private void UpdateXPtext()
     {
-        int currentXP = this.presenter.PlayerLevel.CurrentExperience;
-        int requiredXP = this.presenter.PlayerLevel.RequiredExperience;
+        int currentXP = this.presenter.CurrentExperience.Value;
+        int requiredXP = this.presenter.RequiredExperience.Value;
         this.experienceText.text = $"XP: {currentXP}/{requiredXP}";
     }
 
     private void SetLevelUpButtonState()
     {
-        ButtonState state = this.presenter.PlayerLevel.CanLevelUp() ? ButtonState.Active : ButtonState.Inactive;
+        ButtonState state = this.presenter.CanLevelUp ? ButtonState.Active : ButtonState.Inactive;
         this.levelUpButton.SetState(state);
     }
 
   
     public void HidePopup()
     {
-        gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
     }
    
     
     private void UpdateSliderValues()
     {
-        this.expericeSlider.maxValue = this.presenter.PlayerLevel.RequiredExperience;
-        this.expericeSlider.value = this.presenter.PlayerLevel.CurrentExperience;
+        this.expericeSlider.maxValue = this.presenter.RequiredExperience.Value;
+        this.expericeSlider.value = this.presenter.CurrentExperience.Value;
     }
 
     private void UpdateStats()
     {
-        for(int i = 0; i < existingStats.Length; i++)
+        for(int i = 0; i < this.existingStats.Length; i++)
         {
-            UpdateStatsText(statSlots[i], existingStats[i]);
+            UpdateStatsText(this.statSlots[i], this.existingStats[i]);
         }
     }
 
@@ -112,7 +120,7 @@ public class PopupView : MonoBehaviour
         SetLevelUpButtonState();
     }
 
-    private void HandleLevelUpdateEvent()
+    private void HandleLevelUpdateEvent(int _)
     {
         UpdateLevelText();
         SetLevelUpButtonState();
@@ -123,9 +131,8 @@ public class PopupView : MonoBehaviour
 
     private void OnDisable()
     {
-        this.presenter.PlayerLevel.OnExperienceChanged -= HandleXPUpdateEvent;
-        this.presenter.PlayerLevel.OnLevelUp -= HandleLevelUpdateEvent;
-        this.levelUpButton.Button.onClick.RemoveListener(this.presenter.PlayerLevel.LevelUp);
+        this.compositeDisposable.Dispose();
+        this.levelUpButton.Button.onClick.RemoveListener(this.presenter.LevelUp);
         this.closeButton.closeEvent -= HidePopup;
     }
 }

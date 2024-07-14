@@ -1329,7 +1329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerConfig: {fileID: 11400000, guid: 99042143fe5ff464d845fbde669829ed, type: 2}
   popupView: {fileID: 1541380071}
-  xpToAdd: 50
+  xpToAdd: 10
   statToAdd: 2
 --- !u!4 &774136450
 Transform:

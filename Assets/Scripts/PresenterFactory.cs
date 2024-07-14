@@ -1,39 +1,39 @@
 using System;
-using UnityEngine;
+using Zenject;
 
 namespace Lessons.Architecture.PM
 {
     public class PresenterFactory
     {
-        private IPresenter currentPresenter;
-        public IPresenter CurrentPresenter {  get { return currentPresenter; } }
-
         public event Action<IPresenter> presenterCreatedEvent;
+        public IPresenter CurrentPresenter {  get { return currentPresenter; } }
+        private IPresenter currentPresenter;
 
-        private PlayerPool playerManager;
+        private PlayerPool playerPool;
+        private DiContainer diContainer;
 
-        public PresenterFactory(PlayerPool playerManager)
+        public PresenterFactory(PlayerPool playerPool, DiContainer container)
         {
-            this.playerManager = playerManager;
+            this.playerPool = playerPool;
+            this.diContainer = container;
         }
 
         public IPresenter CreatePresenter(PlayerConfig playerConfig)
         {
-            IPresenter presenter;
 
-            if(this.playerManager.HasPlayer(playerConfig))
+            if(this.playerPool.HasPlayer(playerConfig))
             {
-                presenter = this.playerManager.GetPlayer(playerConfig) as IPresenter;
+                this.currentPresenter = this.playerPool.GetPlayer(playerConfig);
+                
             }
             else
             {
-                presenter = new Player(playerConfig);
-                this.currentPresenter = presenter;
-                this.playerManager.AddPlayer(this.currentPresenter as Player);
-                presenterCreatedEvent?.Invoke(this.currentPresenter);
+                this.currentPresenter = this.diContainer.Instantiate<Player>(new object[] { playerConfig });
+                this.playerPool.AddPlayer(this.currentPresenter as Player);
+                this.presenterCreatedEvent?.Invoke(this.currentPresenter);
             }
 
-            return presenter;
+            return this.currentPresenter;
         }
    
     }
