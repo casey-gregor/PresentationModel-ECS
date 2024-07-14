@@ -24,10 +24,8 @@ namespace Lessons.Architecture.PM
             int newTotalXP = this.CurrentExperience + value;
 
             unusedExperience = Mathf.Abs(this.RequiredExperience - newTotalXP);
-            Debug.Log("unusedxp : " + unusedExperience);
 
             var xpToAdd = Math.Min(newTotalXP, this.RequiredExperience);
-            Debug.Log("xp to add : " + xpToAdd);
 
             this.CurrentExperience = xpToAdd;
             this.OnExperienceChanged?.Invoke(xpToAdd);

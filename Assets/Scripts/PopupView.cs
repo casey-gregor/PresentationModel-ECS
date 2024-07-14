@@ -20,11 +20,6 @@ public class PopupView : MonoBehaviour
 
     public IPresenter presenter { get; private set; }
 
-    private void Awake()
-    {
-        closeButton.closeEvent += HidePopup;
-    }
-
     public void ShowPopup(IPresenter presenter)
     {
         this.gameObject.SetActive(true);
@@ -35,9 +30,6 @@ public class PopupView : MonoBehaviour
         UpdateLevelText();
         UpdateXPtext();
         UpdateSliderValues();
-
-        this.presenter.PlayerLevel.OnExperienceChanged += HandleXPUpdateEvent;
-        this.presenter.PlayerLevel.OnLevelUp += HandleLevelUpdateEvent;
 
         this.existingStats = this.presenter.Stats.GetStats();
 
@@ -53,7 +45,11 @@ public class PopupView : MonoBehaviour
             }
         }
 
-        this.levelUpButton.Button.onClick.AddListener(this.presenter.PlayerLevel.LevelUp); ;
+        this.presenter.PlayerLevel.OnExperienceChanged += HandleXPUpdateEvent;
+        this.presenter.PlayerLevel.OnLevelUp += HandleLevelUpdateEvent;
+        this.levelUpButton.Button.onClick.AddListener(this.presenter.PlayerLevel.LevelUp);
+        this.closeButton.closeEvent += HidePopup;
+
         SetLevelUpButtonState();
     }
 
@@ -123,5 +119,13 @@ public class PopupView : MonoBehaviour
         UpdateXPtext();
         UpdateSliderValues();
         UpdateStats();
+    }
+
+    private void OnDisable()
+    {
+        this.presenter.PlayerLevel.OnExperienceChanged -= HandleXPUpdateEvent;
+        this.presenter.PlayerLevel.OnLevelUp -= HandleLevelUpdateEvent;
+        this.levelUpButton.Button.onClick.RemoveListener(this.presenter.PlayerLevel.LevelUp);
+        this.closeButton.closeEvent -= HidePopup;
     }
 }

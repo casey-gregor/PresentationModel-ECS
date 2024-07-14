@@ -1,12 +1,14 @@
 
+using System;
 
 namespace Lessons.Architecture.PM
 {
 
-    public class StatsController
+    public class StatsController : IDisposable
     {
         private PresenterFactory presenterFactory;
         private ActionHelper actionHelper;
+        private IPresenter presenter;
         public StatsController(PresenterFactory presenterFactory, ActionHelper actionHelper)
         {
             this.presenterFactory = presenterFactory;
@@ -17,7 +19,8 @@ namespace Lessons.Architecture.PM
 
         private void HandlePresenterCreatedEvent(IPresenter presenter)
         {
-            presenter.PlayerLevel.OnLevelUp += UpdateStats;
+            this.presenter = presenter;
+            this.presenter.PlayerLevel.OnLevelUp += UpdateStats;
         }
 
         private void UpdateStats()
@@ -30,5 +33,11 @@ namespace Lessons.Architecture.PM
                 stat.ChangeValue(currentValue + actionHelper.StatToAdd);
             }
         }
+        public void Dispose()
+        {
+            this.presenterFactory.presenterCreatedEvent -= HandlePresenterCreatedEvent;
+            this.presenter.PlayerLevel.OnLevelUp -= UpdateStats;
+        }
+
     }
 }

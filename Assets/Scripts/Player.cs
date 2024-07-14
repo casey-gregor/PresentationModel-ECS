@@ -8,6 +8,7 @@ namespace Lessons.Architecture.PM
         public UserInfo UserInfo => userInfo;
         public PlayerLevel PlayerLevel => level;
         public StatsInfo Stats => stats;
+        public PlayerConfig Config => config;
 
         private UserInfo userInfo;
         private PlayerLevel level;
@@ -20,12 +21,12 @@ namespace Lessons.Architecture.PM
         private PlayerStat damage;
         private PlayerStat regeneration;
 
-        private PlayerConfig playerConfig;
+        private PlayerConfig config;
    
 
         public Player(PlayerConfig config)
         {
-            this.playerConfig = config;
+            this.config = config;
 
             SetupPlayerInfo(config);
 
