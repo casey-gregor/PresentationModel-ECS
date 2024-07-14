@@ -5,13 +5,14 @@ namespace Lessons.Architecture.PM
 {
     public class ActionHelper : MonoBehaviour
     {
+        public int XPToAdd { get => xpToAdd; }
+        public int StatToAdd {  get => statToAdd; }
+
         [SerializeField] private PlayerConfig playerConfig;
         [SerializeField] private PopupView popupView;
         [SerializeField] private int xpToAdd = 100;
         [SerializeField] private int statToAdd = 1;
 
-        public int XPToAdd { get => xpToAdd; }
-        public int StatToAdd {  get => statToAdd; }
 
         private PresenterFactory presenterFactory;
         private XPController xpController;

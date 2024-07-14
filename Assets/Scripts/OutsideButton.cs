@@ -13,6 +13,6 @@ public class OutsideButton : MonoBehaviour
     }
     private void HandleOnClickEvent()
     {
-        closeEvent?.Invoke();
+        this.closeEvent?.Invoke();
     }
 }

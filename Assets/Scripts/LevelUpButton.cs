@@ -9,13 +9,13 @@ public enum ButtonState
 
 public class LevelUpButton : MonoBehaviour
 {
+    public Button Button { get { return button; } }
+    
     [SerializeField] private Button button;
     [SerializeField] private Image levelUpButtonBackground;
     [SerializeField] private Sprite buttonActiveSprite;
     [SerializeField] private Sprite buttonInactiveSprite;
     [SerializeField] private ButtonState state;
-
-    public Button Button { get { return button; } }
 
     public void SetState(ButtonState state)
     {

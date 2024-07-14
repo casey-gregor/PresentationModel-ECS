@@ -9,8 +9,6 @@ namespace Lessons.Architecture.PM
     {
         [SerializeField] private GameObject statObject;
         public GameObject StatObject { get => statObject; }
-
-
     }
 
 }
