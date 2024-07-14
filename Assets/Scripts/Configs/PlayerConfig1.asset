@@ -15,7 +15,7 @@ MonoBehaviour:
   playerName: Vasiliy
   playerDescription: The best samogon maker
   playerAvatar: {fileID: 21300000, guid: 954d79ad0f5124da59b33552ab47a641, type: 3}
-  playerExperience: 0
+  playerExperience: 50
   moveSpeed: 2
   intelligence: 31
   stamina: 1

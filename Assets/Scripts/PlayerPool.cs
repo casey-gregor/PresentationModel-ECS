@@ -13,17 +13,17 @@ namespace Lessons.Architecture.PM
 
         public void AddPlayer(Player player)
         {
-            players.Add(player);
+            this.players.Add(player);
         }
 
         public Player GetPlayer(PlayerConfig config)
         {
             
-            return players.FirstOrDefault(player => player.Config == config);
+            return this.players.FirstOrDefault(player => player.Config == config);
         }
         public bool HasPlayer(PlayerConfig playerConfig)
         {
-            return players.Any(player => player.Config == playerConfig);
+            return this.players.Any(player => player.Config == playerConfig);
         }
     }
 }

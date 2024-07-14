@@ -1,5 +1,5 @@
-
 using System;
+using UniRx;
 
 namespace Lessons.Architecture.PM
 {
@@ -9,6 +9,7 @@ namespace Lessons.Architecture.PM
         private PresenterFactory presenterFactory;
         private ActionHelper actionHelper;
         private IPresenter presenter;
+        private IDisposable disposable;
         public StatsController(PresenterFactory presenterFactory, ActionHelper actionHelper)
         {
             this.presenterFactory = presenterFactory;
@@ -20,23 +21,23 @@ namespace Lessons.Architecture.PM
         private void HandlePresenterCreatedEvent(IPresenter presenter)
         {
             this.presenter = presenter;
-            this.presenter.PlayerLevel.OnLevelUp += UpdateStats;
+            this.disposable = this.presenter.Level.Subscribe(UpdateStats);
         }
 
-        private void UpdateStats()
+        private void UpdateStats(int _)
         {
             IPresenter currentPresenter = this.presenterFactory.CurrentPresenter;
-            PlayerStat[] currentStats = currentPresenter.Stats.GetStats();
+            PlayerStat[] currentStats = currentPresenter.GetStats();
             foreach (PlayerStat stat in currentStats)
             {
                 int currentValue = stat.Value;
-                stat.ChangeValue(currentValue + actionHelper.StatToAdd);
+                stat.ChangeValue(currentValue + this.actionHelper.StatToAdd);
             }
         }
         public void Dispose()
         {
             this.presenterFactory.presenterCreatedEvent -= HandlePresenterCreatedEvent;
-            this.presenter.PlayerLevel.OnLevelUp -= UpdateStats;
+            this.disposable.Dispose();
         }
 
     }
