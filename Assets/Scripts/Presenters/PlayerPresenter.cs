@@ -17,8 +17,8 @@ namespace Lessons.Architecture.PM
         public LevelPresenter LevelPresenter => levelPresenter;
         private LevelPresenter levelPresenter;
 
-        public StatsPresenter StatsPresenter => statsPresenter;
-        private StatsPresenter statsPresenter;
+        public AllStatsPresenter StatsPresenter => statsPresenter;
+        private AllStatsPresenter statsPresenter;
 
         public PlayerPresenter(PlayerConfig config, DiContainer diContainer)
         {
@@ -32,7 +32,7 @@ namespace Lessons.Architecture.PM
             this.levelPresenter = diContainer.Instantiate<LevelPresenter>(new object[] {config, diContainer} );
             this.smallPresenters.Add(this.levelPresenter);
 
-            this.statsPresenter = new StatsPresenter(config);
+            this.statsPresenter = diContainer.Instantiate<AllStatsPresenter>(new object[] { config, diContainer });
             this.smallPresenters.Add(this.statsPresenter);
         }
 

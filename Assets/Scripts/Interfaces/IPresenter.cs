@@ -32,11 +32,19 @@ public interface ILevelPresenter : ISmallPresenter
     void LevelUp();
 }
 
-public interface IStatsPresenter : ISmallPresenter
+public interface IAllStatsPresenter : ISmallPresenter
 {
+    HashSet<StatPresenter> StatPresenters { get; }
+
     event Action StatsUpdateEvent;
     PlayerStat[] GetStats();
 
+}
+
+public interface IStatPresenter : ISmallPresenter
+{
+    string Name { get; }
+    int Value { get; }
 }
 
 public interface IViewable
