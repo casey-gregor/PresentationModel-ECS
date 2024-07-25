@@ -5,20 +5,20 @@ namespace Lessons.Architecture.PM
 {
     public class PlayerPool
     {
-        private HashSet<Player> players;
+        private HashSet<PlayerPresenter> players;
         public PlayerPool()
         {
-            this.players = new HashSet<Player>();
+            this.players = new HashSet<PlayerPresenter>();
         }
 
-        public void AddPlayer(Player player)
+        public void AddPlayer(PlayerPresenter player)
         {
             this.players.Add(player);
         }
 
-        public Player GetPlayer(PlayerConfig config)
+        public PlayerPresenter GetPlayer(PlayerConfig config)
         {
-            
+
             return this.players.FirstOrDefault(player => player.Config == config);
         }
         public bool HasPlayer(PlayerConfig playerConfig)

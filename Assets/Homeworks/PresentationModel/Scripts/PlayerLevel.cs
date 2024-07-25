@@ -6,8 +6,6 @@ namespace Lessons.Architecture.PM
 {
     public sealed class PlayerLevel : IDisposable
     {
-        public event Action OnLevelUp;
-        public event Action<int> OnExperienceChanged;
 
         public IReadOnlyReactiveProperty<int> CurrentLevel => currentLevel;
         private readonly ReactiveProperty<int> currentLevel = new();
@@ -35,6 +33,8 @@ namespace Lessons.Architecture.PM
 
         public void AddExperience(int value)
         {
+            if (value < 0) return;
+
             int newTotalXP = this.currentExperience.Value + value;
 
             this.unusedExperience = Mathf.Abs(this.requiredExperience.Value - newTotalXP);
@@ -52,7 +52,6 @@ namespace Lessons.Architecture.PM
                 this.currentExperience.SetValueAndForceNotify(this.currentExperience.Value = 0);
                 this.currentLevel.Value++;
                 AddUnusedExperience();
-                this.OnLevelUp?.Invoke();
             }
         }
 
@@ -73,5 +72,6 @@ namespace Lessons.Architecture.PM
         {
             this.disposable.Dispose();
         }
+
     }
 }

@@ -13,12 +13,19 @@ MonoBehaviour:
   m_Name: PlayerConfig3
   m_EditorClassIdentifier: 
   playerName: Valeriy
-  playerDescription: The best rasol maker
+  playerDescription: The best of the best
   playerAvatar: {fileID: 21300000, guid: a564258f7260e47d58e9ee37e2a3abb7, type: 3}
   playerExperience: 1000
-  moveSpeed: 5
-  intelligence: 1
-  stamina: 7
-  damage: 9
-  dexterity: 1
-  regeneration: 111
+  statsArray:
+  - name: 0
+    value: 1
+  - name: 1
+    value: 2
+  - name: 2
+    value: 3
+  - name: 3
+    value: 4
+  - name: 4
+    value: 5
+  - name: 5
+    value: 6

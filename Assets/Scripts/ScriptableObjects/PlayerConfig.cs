@@ -15,12 +15,6 @@ namespace Lessons.Architecture.PM
         public int playerExperience = 0;
 
         [Space(10)]
-        public int moveSpeed;
-        public int intelligence;
-        public int stamina;
-        public int damage;
-        public int dexterity;
-        public int regeneration;
-
+        public StatItem[] statsArray;
     }
 }

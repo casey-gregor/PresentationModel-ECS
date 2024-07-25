@@ -23,6 +23,7 @@ namespace Lessons.Architecture.PM
             this.presenterFactory = presenterFactory;
             this.xpController = xpController;
         }
+
         public void ShowPopup()
         {
             IPresenter presenter = this.presenterFactory.CreatePresenter(this.playerConfig);

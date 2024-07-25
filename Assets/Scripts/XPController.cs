@@ -4,7 +4,7 @@ namespace Lessons.Architecture.PM
 {
     public sealed class XPController
     {
-        private Player currentPresenter;
+        private PlayerPresenter currentPresenter;
         private PresenterFactory presenterFactory;
         public XPController(PresenterFactory factory)
         {
@@ -15,8 +15,8 @@ namespace Lessons.Architecture.PM
         {
             if (this.presenterFactory.CurrentPresenter != null)
             {
-                this.currentPresenter = this.presenterFactory.CurrentPresenter as Player;
-                this.currentPresenter.AddExperience(value);
+                this.currentPresenter = this.presenterFactory.CurrentPresenter as PlayerPresenter;
+                this.currentPresenter.LevelPresenter.AddExperience(value);
             }
         }
     }

@@ -8,35 +8,32 @@ namespace Lessons.Architecture.PM
     {
         private PresenterFactory presenterFactory;
         private ActionHelper actionHelper;
-        private IPresenter presenter;
+
         private IDisposable disposable;
         public StatsController(PresenterFactory presenterFactory, ActionHelper actionHelper)
         {
             this.presenterFactory = presenterFactory;
             this.actionHelper = actionHelper;
 
-            this.presenterFactory.presenterCreatedEvent += HandlePresenterCreatedEvent;
+            this.presenterFactory.PresenterCreatedEvent += HandlePresenterCreatedEvent;
         }
 
         private void HandlePresenterCreatedEvent(IPresenter presenter)
         {
-            this.presenter = presenter;
-            this.disposable = this.presenter.Level.Subscribe(UpdateStats);
+            PlayerPresenter newPresenter = presenter as PlayerPresenter;
+            this.disposable = newPresenter.LevelPresenter.Level.SkipLatestValueOnSubscribe().Subscribe(UpdateStats);
         }
 
         private void UpdateStats(int _)
         {
-            IPresenter currentPresenter = this.presenterFactory.CurrentPresenter;
-            PlayerStat[] currentStats = currentPresenter.GetStats();
-            foreach (PlayerStat stat in currentStats)
-            {
-                int currentValue = stat.Value;
-                stat.ChangeValue(currentValue + this.actionHelper.StatToAdd);
-            }
+            PlayerPresenter currentPresenter = this.presenterFactory.CurrentPresenter as PlayerPresenter;
+            PlayerStat[] currentStats = currentPresenter.StatsPresenter.GetStats();
+            currentPresenter.StatsPresenter.UpdateStats(currentStats, this.actionHelper.StatToAdd);
+
         }
         public void Dispose()
         {
-            this.presenterFactory.presenterCreatedEvent -= HandlePresenterCreatedEvent;
+            this.presenterFactory.PresenterCreatedEvent -= HandlePresenterCreatedEvent;
             this.disposable.Dispose();
         }
 

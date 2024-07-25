@@ -9,11 +9,11 @@ namespace Lessons.Architecture.PM
         public event Action<PlayerStat> OnStatAdded;
         public event Action<PlayerStat> OnStatRemoved;
     
-        private readonly HashSet<PlayerStat> stats = new();
+        private readonly HashSet<PlayerStat> Stats = new();
 
         public void AddStat(PlayerStat stat)
         {
-            if (this.stats.Add(stat))
+            if (this.Stats.Add(stat))
             {
                 this.OnStatAdded?.Invoke(stat);
             }
@@ -21,7 +21,7 @@ namespace Lessons.Architecture.PM
 
         public void RemoveStat(PlayerStat stat)
         {
-            if (this.stats.Remove(stat))
+            if (this.Stats.Remove(stat))
             {
                 this.OnStatRemoved?.Invoke(stat);
             }
@@ -29,7 +29,7 @@ namespace Lessons.Architecture.PM
 
         public PlayerStat GetStat(string name)
         {
-            foreach (var stat in this.stats)
+            foreach (var stat in this.Stats)
             {
                 if (stat.Name == name)
                 {
@@ -42,7 +42,7 @@ namespace Lessons.Architecture.PM
 
         public PlayerStat[] GetStats()
         {
-            return this.stats.ToArray();
+            return this.Stats.ToArray();
         }
     }
 }

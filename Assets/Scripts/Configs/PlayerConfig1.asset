@@ -16,9 +16,16 @@ MonoBehaviour:
   playerDescription: The best samogon maker
   playerAvatar: {fileID: 21300000, guid: 954d79ad0f5124da59b33552ab47a641, type: 3}
   playerExperience: 50
-  moveSpeed: 2
-  intelligence: 31
-  stamina: 1
-  damage: 6
-  dexterity: 23
-  regeneration: 15
+  statsArray:
+  - name: 0
+    value: 5
+  - name: 1
+    value: 31
+  - name: 2
+    value: 1
+  - name: 3
+    value: 6
+  - name: 4
+    value: 23
+  - name: 5
+    value: 15
