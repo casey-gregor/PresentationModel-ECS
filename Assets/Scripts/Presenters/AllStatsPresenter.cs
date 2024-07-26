@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 using Zenject;
 
 namespace Lessons.Architecture.PM
@@ -8,10 +7,10 @@ namespace Lessons.Architecture.PM
     public class AllStatsPresenter : IAllStatsPresenter
     {
         public event Action StatsUpdateEvent;
+        public HashSet<StatPresenter> StatPresenters => statPresenters;
 
         private StatsInfo playerStats;
 
-        public HashSet<StatPresenter> StatPresenters => statPresenters;
         private HashSet<StatPresenter> statPresenters = new();
 
         public AllStatsPresenter(PlayerConfig playerConfig, DiContainer diContainer)
@@ -43,7 +42,6 @@ namespace Lessons.Architecture.PM
 
             foreach (PlayerStat stat in currentStats)
             {
-                //Debug.Log("updating stat for : " + stat.Name);
                 stat.ChangeValue(stat.Value + statToAdd);
             }
             

@@ -26,7 +26,7 @@ namespace Lessons.Architecture.PM
 
         public void ShowPopup()
         {
-            IPresenter presenter = this.presenterFactory.CreatePresenter(this.playerConfig);
+            IBigPresenter presenter = this.presenterFactory.CreatePresenter(this.playerConfig);
             this.popupView.ShowPopup(presenter);
         }
 

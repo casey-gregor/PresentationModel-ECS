@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
-using UnityEngine;
-using Zenject;
+
 
 namespace Lessons.Architecture.PM
 {
@@ -33,6 +31,12 @@ namespace Lessons.Architecture.PM
         public void Dispose()
         {
             this.playerStat.OnValueChanged -= HandleValueChangeEvent;
+        }
+
+        public string GetStatText()
+        {
+            string text = $"{Name} : {Value}";
+            return text;
         }
     }
 }

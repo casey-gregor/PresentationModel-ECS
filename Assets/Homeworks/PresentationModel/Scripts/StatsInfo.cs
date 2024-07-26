@@ -36,8 +36,7 @@ namespace Lessons.Architecture.PM
                     return stat;
                 }
             }
-
-            throw new Exception($"Stat {name} is not found!");
+            return null;
         }
 
         public PlayerStat[] GetStats()

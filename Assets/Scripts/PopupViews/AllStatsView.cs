@@ -1,59 +1,62 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AllStatsView : MonoBehaviour, IViewable
+namespace Lessons.Architecture.PM
 {
-    [SerializeField] private GameObject statViewPrefab;
-    [SerializeField] private Transform statViewParent;
-
-    private Dictionary<string, StatView> existingStats = new();
-
-    private IAllStatsPresenter presenter;
-
-    public void Initiate(IPresenter presenter)
+    public class AllStatsView : MonoBehaviour, IViewable
     {
-        if(existingStats.Count > 0)
-        {
-            foreach(StatView item in existingStats.Values)
-            {
-                Destroy(item.gameObject);
-            }
-        }
-        existingStats.Clear();
+        [SerializeField] private GameObject statViewPrefab;
+        [SerializeField] private Transform statViewParent;
 
-        foreach (ISmallPresenter smallPresenter in presenter.SmallPresenters)
+        private Dictionary<string, StatView> existingStats = new();
+
+        private IAllStatsPresenter presenter;
+
+        public void Initiate(IBigPresenter presenter)
         {
-            if (smallPresenter is IAllStatsPresenter allStatPresenter)
+            if (existingStats.Count > 0)
             {
-                this.presenter = allStatPresenter;
+                foreach (StatView item in existingStats.Values)
+                {
+                    Destroy(item.gameObject);
+                }
             }
 
+            existingStats.Clear();
+
+            foreach (ISmallPresenter smallPresenter in presenter.SmallPresenters)
+            {
+                if (smallPresenter is IAllStatsPresenter allStatPresenter)
+                {
+                    this.presenter = allStatPresenter;
+                }
+
+            }
+
+            foreach (IStatPresenter statPresenter in this.presenter.StatPresenters)
+            {
+                StatView statView = Instantiate(statViewPrefab, statViewParent).GetComponent<StatView>();
+                statView.UpdateStatsText(statPresenter);
+                this.existingStats.Add(statPresenter.Name, statView);
+            }
+
+            this.presenter.StatsUpdateEvent += UpdateStats;
         }
 
-        foreach (IStatPresenter statPresenter in this.presenter.StatPresenters)
+
+        private void UpdateStats()
         {
-            StatView statView = Instantiate(statViewPrefab, statViewParent).GetComponent<StatView>();
-            statView.UpdateStatsText(statPresenter);
-            this.existingStats.Add(statPresenter.Name, statView);
+            foreach (IStatPresenter statPresenter in this.presenter.StatPresenters)
+            {
+                this.existingStats[statPresenter.Name].UpdateStatsText(statPresenter);
+            }
         }
 
-        this.presenter.StatsUpdateEvent += UpdateStats;
-    }
-
-
-    private void UpdateStats()
-    {
-        foreach(IStatPresenter statPresenter in this.presenter.StatPresenters)
+        private void OnDestroy()
         {
-            //Debug.Log("updating stat view for : " + statPresenter.Name);
-            //Debug.Log("with value : " + statPresenter.Value);
-            this.existingStats[statPresenter.Name].UpdateStatsText(statPresenter);
+            this.presenter.StatsUpdateEvent -= UpdateStats;
         }
-    }
 
-    private void OnDestroy()
-    {
-        this.presenter.StatsUpdateEvent -= UpdateStats;
     }
-
 }
+

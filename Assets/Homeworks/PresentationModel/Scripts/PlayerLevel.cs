@@ -6,7 +6,6 @@ namespace Lessons.Architecture.PM
 {
     public sealed class PlayerLevel : IDisposable
     {
-
         public IReadOnlyReactiveProperty<int> CurrentLevel => currentLevel;
         private readonly ReactiveProperty<int> currentLevel = new();
 

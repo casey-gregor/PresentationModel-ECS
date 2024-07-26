@@ -11,7 +11,6 @@ namespace Lessons.Architecture.PM
             Container.Bind<IViewable>().To<UserInfoView>().FromComponentInHierarchy().AsSingle();
             Container.Bind<IViewable>().To<LevelView>().FromComponentInHierarchy().AsSingle();
             Container.Bind<IViewable>().To<AllStatsView>().FromComponentInHierarchy().AsSingle();
-            //Container.BindInterfacesAndSelfTo<LevelPresenter>().AsTransient();
             Container.Bind<PopupView>().FromComponentInHierarchy().AsSingle().NonLazy();
             Container.Bind<PlayerPool>().AsSingle().NonLazy();
             Container.Bind<PresenterFactory>().AsSingle().NonLazy();

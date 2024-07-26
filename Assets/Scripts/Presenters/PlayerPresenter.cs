@@ -4,7 +4,7 @@ using Zenject;
 namespace Lessons.Architecture.PM
 {
 
-    public class PlayerPresenter : IPresenter
+    public class PlayerPresenter : IBigPresenter
     {
         public IReadOnlyList<ISmallPresenter> SmallPresenters => smallPresenters;
         private List<ISmallPresenter> smallPresenters = new();
@@ -34,11 +34,7 @@ namespace Lessons.Architecture.PM
 
             this.statsPresenter = diContainer.Instantiate<AllStatsPresenter>(new object[] { config, diContainer });
             this.smallPresenters.Add(this.statsPresenter);
-        }
-
-       
-
-       
+        } 
        
     }
 

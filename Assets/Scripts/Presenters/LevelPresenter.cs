@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -7,17 +8,14 @@ namespace Lessons.Architecture.PM
 {
     public class LevelPresenter : ILevelPresenter, IDisposable
     {
-
+        public bool CanLevelUp { get; private set; }
         public IReadOnlyReactiveProperty<int> Level => level;
-        private readonly ReactiveProperty<int> level = new();
-
         public IReadOnlyReactiveProperty<int> CurrentExperience => currentExperience;
         public IReadOnlyReactiveProperty<int> RequiredExperience => requiredExperience;
 
+        private readonly ReactiveProperty<int> level = new();
         private readonly ReactiveProperty<int> requiredExperience = new();
-
         private readonly ReactiveProperty<int> currentExperience = new();
-        public bool CanLevelUp { get; private set; }
 
         private PlayerLevel playerLevel;
 
@@ -25,7 +23,6 @@ namespace Lessons.Architecture.PM
         public LevelPresenter(PlayerConfig config, DiContainer diContainer)
         {
             SetupPlayerLevel(config, diContainer);
-            Debug.Log("created LevelPresenter");
         }
 
         private void SetupPlayerLevel(PlayerConfig config, DiContainer diContainer)
@@ -72,8 +69,19 @@ namespace Lessons.Architecture.PM
 
         public void Dispose()
         {
-            Debug.Log("disposed LevelPresenter");
             this.compositeDisposable.Dispose();
+        }
+
+        public string GetLevelText()
+        {
+            string text = $"Level: {level}";
+            return text;
+        }
+
+        public string GetXPText()
+        {
+            string text = $"XP: {currentExperience}/{requiredExperience}";
+            return text;
         }
     }
 }

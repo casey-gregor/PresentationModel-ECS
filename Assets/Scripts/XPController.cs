@@ -16,7 +16,7 @@ namespace Lessons.Architecture.PM
             if (this.presenterFactory.CurrentPresenter != null)
             {
                 this.currentPresenter = this.presenterFactory.CurrentPresenter as PlayerPresenter;
-                this.currentPresenter.LevelPresenter.AddExperience(value);
+                this.currentPresenter!.LevelPresenter.AddExperience(value);
             }
         }
     }

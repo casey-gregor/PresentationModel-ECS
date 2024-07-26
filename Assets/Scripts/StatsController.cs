@@ -3,7 +3,6 @@ using UniRx;
 
 namespace Lessons.Architecture.PM
 {
-
     public class StatsController : IDisposable
     {
         private PresenterFactory presenterFactory;
@@ -18,7 +17,7 @@ namespace Lessons.Architecture.PM
             this.presenterFactory.PresenterCreatedEvent += HandlePresenterCreatedEvent;
         }
 
-        private void HandlePresenterCreatedEvent(IPresenter presenter)
+        private void HandlePresenterCreatedEvent(IBigPresenter presenter)
         {
             PlayerPresenter newPresenter = presenter as PlayerPresenter;
             this.disposable = newPresenter.LevelPresenter.Level.SkipLatestValueOnSubscribe().Subscribe(UpdateStats);

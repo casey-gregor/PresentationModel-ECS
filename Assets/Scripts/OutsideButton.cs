@@ -12,7 +12,7 @@ public class OutsideButton : MonoBehaviour
     private void Awake()
     {
         this.button = GetComponent<Button>();
-        button.onClick.AddListener(HandleOnClickEvent);
+        this.button.onClick.AddListener(HandleOnClickEvent);
     }
     private void HandleOnClickEvent()
     {
