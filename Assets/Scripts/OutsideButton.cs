@@ -2,25 +2,30 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Button))]
-public class OutsideButton : MonoBehaviour
+
+namespace Lessons.Architecture.PM
 {
-    public event Action CloseEvent;
 
-    private Button button;
+    [RequireComponent(typeof(Button))]
+    public class OutsideButton : MonoBehaviour
+    {
+        public event Action CloseEvent;
 
-    private void Awake()
-    {
-        this.button = GetComponent<Button>();
-        this.button.onClick.AddListener(HandleOnClickEvent);
-    }
-    private void HandleOnClickEvent()
-    {
-        this.CloseEvent?.Invoke();
-    }
+        private Button button;
 
-    private void OnDestroy()
-    {
-        this.button.onClick.RemoveListener(HandleOnClickEvent);
+        private void Awake()
+        {
+            this.button = GetComponent<Button>();
+            this.button.onClick.AddListener(HandleOnClickEvent);
+        }
+        private void HandleOnClickEvent()
+        {
+            this.CloseEvent?.Invoke();
+        }
+
+        private void OnDestroy()
+        {
+            this.button.onClick.RemoveListener(HandleOnClickEvent);
+        }
     }
 }
