@@ -31,21 +31,26 @@ MonoBehaviour:
     assemblyNames:
     - Zenject
     - UniTask
-    - UniRx
     - ES3
     - Tween
     - UniTask.Linq
+    - UniRx
     - Zenject-IntegrationTests
     - Assembly-CSharp
     - UniTask.DOTween
+    - Assembly-CSharp-firstpass
+    - Leopotam.EcsLite
+    - UniTask.Addressables
     - Sirenix.OdinInspector.CompatibilityLayer
     - UniTask.TextMeshPro
-    - Assembly-CSharp-firstpass
-    - UniTask.Addressables
+    - Leopotam.EcsLite.Di
+    - Leopotam.EcsLite.UnityEditor
+    - PPv2URPConverters
+    - Zenject-TestFramework
     - Sirenix.OdinInspector.CompatibilityLayer.Editor
     - UniTask.Editor
-    - Zenject-TestFramework
     - Sirenix.OdinInspector.Modules.UnityMathematics
+    - Leopotam.EcsLite.UnityEditor.Runtime
     showAdvancedSettings: 1
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1
