@@ -18,11 +18,10 @@ public class EntityManager
         _world = world;
     }
 
-    public int CreateEntity(Entity prefab, Transform spawnPosition)
+    public Entity CreateEntity(Entity prefab, Vector3 position, Quaternion rotation)
     {
-        Debug.Log("Creating entity");
-        Entity entity = GameObject.Instantiate(prefab, spawnPosition.position, spawnPosition.rotation);
+        Entity entity = GameObject.Instantiate(prefab, position, rotation);
         entity.Initialize(_world);
-        return entity.ID;
+        return entity;
     }
 }

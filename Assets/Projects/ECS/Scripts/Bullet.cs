@@ -15,19 +15,18 @@ public class Bullet : Entity
     public override void Initialize(EcsWorld world)
     {
         _world = world;
-        int entity = _world.NewEntity();
-        _id = entity;
+        _id = world.NewEntity();
 
         EcsPool<MoveSpeed> moveSpeedPool = _world.GetPool<MoveSpeed>();
         EcsPool<MoveDirection> moveDirectionPool = _world.GetPool<MoveDirection>();
         EcsPool<Position> positionPool = _world.GetPool<Position>();
         EcsPool<Rotation> rotationPool = _world.GetPool<Rotation>();
         EcsPool<TransformView> transformPool = _world.GetPool<TransformView>();
-
-        moveSpeedPool.Add(entity) = new MoveSpeed { Value = speed };
-        moveDirectionPool.Add(entity) = new MoveDirection { Value = new Vector3(1f, 0f, 0f) };
-
-        transformPool.Add(entity) = new TransformView { Value = this.transform };
+        
+        positionPool.Add(_id) = new Position { Value = transform.position };
+        moveSpeedPool.Add(_id) = new MoveSpeed { Value = speed };
+        moveDirectionPool.Add(_id) = new MoveDirection { Value = new Vector3(1f, 0f, 0f) };
+        transformPool.Add(_id) = new TransformView { Value = this.transform };
     }
     
     public override ref T GetData<T>()

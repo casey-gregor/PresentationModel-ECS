@@ -6,9 +6,14 @@ namespace ECSHomework
 {
     public sealed class FireRequestSystem : IEcsRunSystem
     {
-        private EcsFilterInject<Inc<FireRequest, BulletWeapon>> _filter;
-        
-        private EcsPoolInject<SpawnRequest> _spawnPool;
+        private readonly EcsFilterInject<Inc<FireRequest, BulletWeapon>> _filter;
+
+        private readonly EcsWorldInject _eventWorld = EcsWorlds.EVENTS_WORLD;
+
+        private readonly EcsPoolInject<SpawnRequest> _spawnPool = EcsWorlds.EVENTS_WORLD;
+        private readonly EcsPoolInject<Position> _positionPool = EcsWorlds.EVENTS_WORLD;
+        private readonly EcsPoolInject<Rotation> _rotationPool = EcsWorlds.EVENTS_WORLD;
+        private readonly EcsPoolInject<Prefab> _prefabPool = EcsWorlds.EVENTS_WORLD;
 
         public void Run(EcsSystems systems)
         {
@@ -17,8 +22,15 @@ namespace ECSHomework
             
             foreach (int entity in _filter.Value)
             {
-                _spawnPool.Value.Add(entity) = new SpawnRequest();
-
+                BulletWeapon bulletWeapon = weaponPool.Get(entity);
+                
+                int newEntity = _eventWorld.Value.NewEntity();
+                
+                _spawnPool.Value.Add(newEntity) = new SpawnRequest();
+                _positionPool.Value.Add(newEntity) = new Position{ Value = bulletWeapon.Firepoint.position };
+                _rotationPool.Value.Add(newEntity) = new Rotation{ Value = bulletWeapon.Firepoint.rotation };
+                _prefabPool.Value.Add(newEntity) = new Prefab { Value = bulletWeapon.BulletPrefab };
+                
                 fireRequestPool.Del(entity);
             }
         }

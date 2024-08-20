@@ -6,31 +6,30 @@ namespace ECSHomework
 {
     public sealed class BulletSpawnSystem : IEcsRunSystem
     {
-        private EcsFilterInject<Inc<SpawnRequest, BulletWeapon>> _filter;
-        
-        private EcsPoolInject<Position> _positionPool;
-        private EcsPoolInject<Rotation> _rotationPool;
+        private readonly EcsWorldInject _eventWorld = EcsWorlds.EVENTS_WORLD;
+        private readonly EcsFilterInject<Inc<SpawnRequest, Position, Rotation, Prefab>> _filter = EcsWorlds.EVENTS_WORLD;
         
         private EcsCustomInject<EntityManager> _entityManager;
         
         public void Run(EcsSystems systems)
         {
             EcsPool<SpawnRequest> spawnEventPool = _filter.Pools.Inc1;
-            EcsPool<BulletWeapon> bulletWeaponPool = _filter.Pools.Inc2;
+            EcsPool<Position> positionPool = _filter.Pools.Inc2;
+            EcsPool<Rotation> rotationPool = _filter.Pools.Inc3;
+            EcsPool<Prefab> entityPrefabPool = _filter.Pools.Inc4;
             
             EntityManager entityManager = _entityManager.Value;
 
             foreach (int entity in _filter.Value)
             {
                 
-                BulletWeapon bulletWeapon = bulletWeaponPool.Get(entity);
+                Prefab bulletPrefab = entityPrefabPool.Get(entity);
+                Position spawnPosition = positionPool.Get(entity);
+                Rotation rotation = rotationPool.Get(entity);
                 
-                int newBulletEntity = entityManager.CreateEntity(bulletWeapon.BulletPrefab, bulletWeapon.Firepoint);
+                entityManager.CreateEntity(bulletPrefab.Value, spawnPosition.Value, rotation.Value);
                 
-                _positionPool.Value.Add(newBulletEntity) = new Position { Value = bulletWeapon.Firepoint.position };
-                _rotationPool.Value.Add(newBulletEntity) = new Rotation { Value = bulletWeapon.Firepoint.rotation };
-                
-                spawnEventPool.Del(entity);
+                _eventWorld.Value.DelEntity(entity);
             }
         }
     }
