@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks.Triggers;
+using UnityEngine;
 
 namespace ECSHomework
 {
@@ -9,6 +10,7 @@ namespace ECSHomework
         private void Update()
         {
             ProcessMoveInput();
+            ProcessFireInput();
         }
 
         private void ProcessMoveInput()
@@ -17,6 +19,13 @@ namespace ECSHomework
             ref MoveDirection moveDirection = ref player.GetData<MoveDirection>();
             
             moveDirection.Value = inputDirection;
+        }
+
+        private void ProcessFireInput()
+        {
+            bool fireInput = PlayerInput.GetActionInput();
+            if (fireInput)
+                player.SetData(new FireRequest());
         }
     }
 }

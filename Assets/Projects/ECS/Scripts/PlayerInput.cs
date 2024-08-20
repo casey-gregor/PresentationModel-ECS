@@ -31,7 +31,7 @@ namespace ECSHomework
 
         public static bool GetActionInput()
         {
-            return Input.GetKeyDown(KeyCode.Space);
+            return Input.GetKeyDown(KeyCode.Mouse0);
         }
     }
 }

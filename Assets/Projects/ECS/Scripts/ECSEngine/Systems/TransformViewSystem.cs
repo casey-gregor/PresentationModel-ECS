@@ -20,12 +20,6 @@ namespace ECSHomework
                 ref TransformView view = ref _filter.Pools.Inc1.Get(entity);
                 
                 Position position = _filter.Pools.Inc2.Get(entity);
-                
-                // if (view.Value == null)
-                // {
-                //     Debug.LogError($"Entity {entity} has a null TransformView.Value!");
-                //     continue;
-                // }
              
                 view.Value.position = position.Value;
 

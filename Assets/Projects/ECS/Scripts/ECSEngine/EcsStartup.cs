@@ -9,6 +9,7 @@ namespace ECSHomework
     {
         private EcsSystems _systems;
         private EcsWorld _world;
+        private EcsWorld _eventsWorld;
         private EntityManager _entityManager;
       
         private void Start () 
@@ -17,11 +18,15 @@ namespace ECSHomework
             // var shared = new Shared ();
             // systems = new EcsSystems (new EcsWorld (), shared);
             _world = new EcsWorld();
+            _eventsWorld = new EcsWorld();
             _systems = new EcsSystems (_world);
+            _systems.AddWorld(_eventsWorld, EcsWorlds.EVENTS_WORLD);
             _entityManager = new EntityManager();
             _systems
                 .Add(new MovementSystem())
                 .Add(new ExampleSystem())
+                .Add(new FireRequestSystem())
+                .Add(new BulletSpawnSystem())
                 
                 
                 
@@ -41,7 +46,8 @@ namespace ECSHomework
 #endif
                 
                 .Inject()
-                .Init ();
+                .Inject(_entityManager)
+                .Init();
             _entityManager.Initialize(_world);
         }
 
