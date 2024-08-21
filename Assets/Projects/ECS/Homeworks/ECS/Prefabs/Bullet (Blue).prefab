@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3267100468075051021}
   - component: {fileID: 2805822624296774891}
   - component: {fileID: 189414070147637022}
+  - component: {fileID: 4236692324785195269}
+  - component: {fileID: 7458571065770110076}
   m_Layer: 0
   m_Name: Bullet (Blue)
   m_TagString: Untagged
@@ -97,3 +99,31 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4236692324785195269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3907833537868550303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc92be7dcbb46b243b15d20ba811e503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ComponentsInstallers:
+  - {fileID: 0}
+--- !u!114 &7458571065770110076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3907833537868550303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fcb1986abff4735abeb8b18ccfc26aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 15
+  entity: {fileID: 4236692324785195269}
