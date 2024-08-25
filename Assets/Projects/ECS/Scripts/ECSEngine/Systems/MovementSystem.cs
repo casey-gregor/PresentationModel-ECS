@@ -1,27 +1,26 @@
 ﻿using Leopotam.EcsLite;
+using Leopotam.EcsLite.Di;
 using UnityEngine;
 
 namespace ECSHomework.Systems
 {
     public sealed class MovementSystem : IEcsRunSystem
     {
+        private EcsFilterInject<Inc<MoveDirection, MoveSpeed, Position>, Exc<ReadyForAttack>> _filter;
+        
         public void Run(EcsSystems systems)
         {
             float deltaTime = Time.deltaTime;
-            EcsWorld ecsWorld = systems.GetWorld();
-
-            EcsFilter filter = ecsWorld.Filter<MoveDirection>().Inc<MoveSpeed>().Inc<Position>().End();
+        
+            EcsPool<MoveDirection> directionPool = _filter.Pools.Inc1;
+            EcsPool<MoveSpeed> speedPool = _filter.Pools.Inc2;
+            EcsPool<Position> positionPool = _filter.Pools.Inc3;
             
-            EcsPool<MoveDirection> directionPool = ecsWorld.GetPool<MoveDirection>();
-            EcsPool<MoveSpeed> speedPool = ecsWorld.GetPool<MoveSpeed>();
-            EcsPool<Position> positionPool = ecsWorld.GetPool<Position>();
-            
-            foreach (var entity in filter)
+            foreach (var entity in _filter.Value)
             {
                 MoveDirection moveDirection = directionPool.Get(entity);
                 MoveSpeed moveSpeed = speedPool.Get(entity);
                 ref Position position = ref positionPool.Get(entity);
-                
                 position.Value += moveDirection.Value *(moveSpeed.Value * deltaTime);
             }
         }

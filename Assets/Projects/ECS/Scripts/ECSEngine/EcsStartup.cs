@@ -1,61 +1,59 @@
+using System;
 using ECSHomework.Systems;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;
+using Zenject;
 
 namespace ECSHomework 
 {
-    public sealed class EcsStartup : MonoBehaviour 
+    public sealed class EcsStartup : MonoBehaviour
     {
         private EcsSystems _systems;
         private EcsWorld _world;
         private EcsWorld _eventsWorld;
         private EntityManager _entityManager;
       
-        private void Start () 
-        {        
-            // register your shared data here, for example:
-            // var shared = new Shared ();
-            // systems = new EcsSystems (new EcsWorld (), shared);
+        private void Awake () 
+        {    
             _world = new EcsWorld();
             _eventsWorld = new EcsWorld();
             _systems = new EcsSystems (_world);
             _systems.AddWorld(_eventsWorld, EcsWorlds.EVENTS_WORLD);
             _entityManager = new EntityManager();
             _systems
+                //Game Logic
+                .Add(new MoveTowardsTargetSystem())
+                .Add(new RotateTowardsTargetSystem())
+                // .Add(new IdentifyAttackDistanceSystem())
                 .Add(new MovementSystem())
-                .Add(new ExampleSystem())
-                .Add(new FireRequestSystem())
-                .Add(new BulletSpawnSystem())
+                .Add(new DealDamageSystem())
+                .Add(new CheckTargetAlive())
+                // .Add(new FireRequestSystem())
+                // .Add(new BulletSpawnSystem())
+                .Add(new DeathRequestSystem())
+                .Add(new DeathEventSystem())
                 
                 
                 
-                
-                
+                //Game View
                 .Add(new TransformViewSystem())
-                // register your systems here, for example:
-                // .Add (new TestSystem1 ())
-                // .Add (new TestSystem2 ())
-                
-                // register additional worlds here, for example:
-                // .AddWorld (new EcsWorld (), "events")
+                //Unity Editor
 #if UNITY_EDITOR
-                // add debug systems for custom worlds here, for example:
-                // .Add (new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem ("events"))
                 .Add (new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem ())
 #endif
                 
                 .Inject()
                 .Inject(_entityManager)
                 .Init();
-            _entityManager.Initialize(_world);
+            _entityManager.Initialize(this);
         }
 
         private void Update () 
         {
             _systems?.Run ();
         }
-
+        
         private void OnDestroy () 
         {
             if (_systems != null) {
@@ -65,6 +63,16 @@ namespace ECSHomework
                 _systems.GetWorld ().Destroy ();
                 _systems = null;
             }
+        }
+
+        public EcsWorld GetWorld(string worldName = null)
+        {
+            return _systems.GetWorld(worldName);
+        }
+
+        public EntityBuilder CreateEntity(string worldName = null)
+        {
+            return new EntityBuilder(_systems.GetWorld(worldName));
         }
     }
 }

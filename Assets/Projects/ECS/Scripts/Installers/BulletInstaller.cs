@@ -7,7 +7,8 @@ namespace ECSHomework
     {
         [SerializeField] private float speed = 15f;
         [SerializeField] private Entity entity;
-        public override void Install(EcsWorld world)
+        
+        public override void Install()
         {
             entity.SetData( new Position { Value = transform.position });
             entity.SetData( new MoveSpeed { Value = speed });

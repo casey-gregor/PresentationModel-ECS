@@ -32,11 +32,11 @@ MonoBehaviour:
     - Zenject
     - UniTask
     - ES3
+    - Assembly-CSharp
     - Tween
     - UniTask.Linq
     - UniRx
     - Zenject-IntegrationTests
-    - Assembly-CSharp
     - UniTask.DOTween
     - Assembly-CSharp-firstpass
     - Leopotam.EcsLite

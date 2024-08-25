@@ -10,7 +10,7 @@ namespace ECSHomework
         [SerializeField] private Transform firePoint;
         [SerializeField] private Entity bulletPrefab;
         
-        public override void Install(EcsWorld world)
+        public override void Install()
         {
             entity.SetData(new MoveDirection());
             entity.SetData(new MoveSpeed { Value = speed });

@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+using Leopotam.EcsLite;
 using UnityEngine;
 using Zenject;
 
-public class ZenjectInstaller : MonoInstaller
+namespace ECSHomework
 {
-    public override void InstallBindings()
+    public class ZenjectInstaller : MonoInstaller
     {
-        Container.Bind<AnotherTestZenject>().AsSingle().NonLazy();
-        Container.Bind<TestZenject>().AsSingle().NonLazy();
-        
+        public override void InstallBindings()
+        {
+            Container.Bind<EcsStartup>().FromComponentInHierarchy().AsSingle().NonLazy();
+        }
     }
+    
 }

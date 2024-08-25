@@ -3,17 +3,24 @@ using UnityEngine;
 
 namespace ECSHomework
 {
-    public abstract class Entity : MonoBehaviour
+    public class Entity : MonoBehaviour
     {
-        public abstract EcsWorld World { get; set; }
-        public abstract int Id { get; set; }
-        public abstract ComponentsInstaller[] ComponentsInstallers { get; set; }
+        public int Id => _id;
+        public EcsStartup EcsStartup => _ecsStartup;
+        public EcsWorld World => _world;
+        public ComponentsInstaller[] ComponentsInstallers => сomponentsInstallers;
+        
+        private int _id = -1;
+        private EcsStartup _ecsStartup;
+        private EcsWorld _world;
+        [SerializeField] private ComponentsInstaller[] сomponentsInstallers;
 
-        public virtual void Initialize(EcsWorld world)
+        public virtual void Initialize(EcsStartup ecsStartup, string worldName = null)
         {
-            World = world;
-            Id = world.NewEntity();
-            
+            _ecsStartup = ecsStartup;
+            _world = _ecsStartup.GetWorld(worldName);
+            _id = _world.NewEntity();
+            // Debug.Log("id : " + Id);
             SetupData();
         }
         
@@ -23,7 +30,7 @@ namespace ECSHomework
             {
                 foreach (var installer in ComponentsInstallers)
                 {
-                    installer.Install(World);
+                    installer.Install();
                 }
             }
         }
