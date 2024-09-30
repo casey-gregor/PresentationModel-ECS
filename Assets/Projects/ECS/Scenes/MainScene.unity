@@ -545,21 +545,9 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 96131464911517415, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
-      propertyPath: smallFire
-      value: 
-      objectReference: {fileID: 254118208}
-    - target: {fileID: 96131464911517415, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
-      propertyPath: mediumFire
-      value: 
-      objectReference: {fileID: 254118207}
-    - target: {fileID: 96131464911517415, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
       propertyPath: team.m_Bits
       value: 32768
       objectReference: {fileID: 0}
-    - target: {fileID: 96131464911517415, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
-      propertyPath: buildingDestroy
-      value: 
-      objectReference: {fileID: 254118206}
     - target: {fileID: 537273405448026616, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
       propertyPath: m_Name
       value: FlagColliderLeft
@@ -721,21 +709,6 @@ PrefabInstance:
 --- !u!4 &254118205 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6854243942854037326, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
-  m_PrefabInstance: {fileID: 254118204}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &254118206 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8267264458361981281, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
-  m_PrefabInstance: {fileID: 254118204}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &254118207 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4553777287571686681, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
-  m_PrefabInstance: {fileID: 254118204}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &254118208 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8435805941617088571, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
   m_PrefabInstance: {fileID: 254118204}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &348754453
@@ -3649,7 +3622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e186afd0cb49e1a938419108d733ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startConfig: {fileID: 11400000, guid: 53f3ee5d2adcc564fb11781e39323215, type: 2}
+  startConfig: {fileID: 11400000, guid: 3542bf50cb4a3cd438ad0dcb91b2068e, type: 2}
   redTeamUnitConfigs:
   - {fileID: 11400000, guid: 666b7e310e0f7c24989a7afcb2f08657, type: 2}
   - {fileID: 11400000, guid: 86cbd19a8bee24b4d87e26b7e1eb3285, type: 2}
@@ -4583,24 +4556,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 96131464911517415, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
       propertyPath: health
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 96131464911517415, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
-      propertyPath: smallFire
-      value: 
-      objectReference: {fileID: 7657002863243684350}
-    - target: {fileID: 96131464911517415, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
-      propertyPath: mediumFire
-      value: 
-      objectReference: {fileID: 7657002863243684351}
     - target: {fileID: 96131464911517415, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
       propertyPath: team.m_Bits
       value: 65536
       objectReference: {fileID: 0}
-    - target: {fileID: 96131464911517415, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
-      propertyPath: buildingDestroy
-      value: 
-      objectReference: {fileID: 7657002863243684349}
     - target: {fileID: 537273405448026616, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
       propertyPath: m_Name
       value: FlagColliderLeft
@@ -4643,7 +4604,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4553777287553547771, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5843500872932411335, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
       propertyPath: m_Size.x
@@ -4709,25 +4670,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 3.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8267264458377518611, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8435805941631847117, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
 --- !u!4 &7657002863243684348 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6854243942854037326, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
-  m_PrefabInstance: {fileID: 7657002863243684347}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &7657002863243684349 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8267264458361981281, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
-  m_PrefabInstance: {fileID: 7657002863243684347}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &7657002863243684350 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8435805941617088571, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
-  m_PrefabInstance: {fileID: 7657002863243684347}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &7657002863243684351 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4553777287571686681, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
   m_PrefabInstance: {fileID: 7657002863243684347}
   m_PrefabAsset: {fileID: 0}

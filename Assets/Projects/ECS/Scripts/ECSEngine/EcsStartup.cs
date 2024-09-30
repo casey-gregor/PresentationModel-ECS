@@ -67,7 +67,7 @@ namespace ECSHomework
                 .Add(new ApplyExplosionSound())
                 
                 .Add(new DeactivateDestroyedBaseSystem())
-                .Add(new ReturnDeadEntityToPoolSystem())
+                .Add(new ReturnDeadUnitToPoolSystem())
                 .Add(new SetEntityInactive())
                 
                 //Cleanup

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ECSHomework
 {
-    public sealed class ReturnDeadEntityToPoolSystem : IEcsRunSystem
+    public sealed class ReturnDeadUnitToPoolSystem : IEcsRunSystem
     {
         private readonly EcsFilterInject<Inc<ReturnToPool, UnitTypeComponent, EntityObject, TeamManagerComponent>> _filter;
         

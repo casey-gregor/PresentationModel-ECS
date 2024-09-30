@@ -8,7 +8,6 @@ namespace ECSHomework
     {
         private readonly EcsFilterInject<Inc<RequesSetInactive>> _filter;
         
-        private readonly EcsPoolInject<Inactive> _inactivePoolEventWorld = EcsWorlds.EVENTS_WORLD;
         private readonly EcsPoolInject<Inactive> _inactivePool;
         
         public void Run(EcsSystems systems)
@@ -18,7 +17,6 @@ namespace ECSHomework
             foreach (var entity in _filter.Value)
             {
                 _inactivePool.Value.Add(entity);
-                // Debug.Log("in set inactive : " + entity);
                 requestSetInactivePool.Del(entity);
             }
         }
