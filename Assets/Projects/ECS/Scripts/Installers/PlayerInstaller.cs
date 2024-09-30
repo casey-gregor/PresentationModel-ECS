@@ -16,7 +16,7 @@ namespace ECSHomework
             entity.SetData(new MoveSpeed { Value = speed });
             entity.SetData(new Position { Value = transform.position });
             entity.SetData(new TransformView { Value = transform });
-            entity.SetData(new BulletWeapon { Firepoint = firePoint, BulletPrefab = bulletPrefab });
+            entity.SetData(new ShootingWeapon { Firepoint = firePoint});
         }
     }
 }

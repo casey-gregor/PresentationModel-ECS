@@ -2,6 +2,7 @@
 {
     public struct Health
     {
-        public int Value;
+        public int InitialValue;
+        public int CurrentValue;
     }
 }

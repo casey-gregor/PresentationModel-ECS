@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Lessons.Architecture.PM
 {
 
-    [CreateAssetMenu(fileName ="PlayerConfig", menuName ="Configs/New PlayerConfig")]
+    // [CreateAssetMenu(fileName ="PlayerConfig", menuName ="Configs/New PlayerConfig")]
     public class PlayerConfig : ScriptableObject
     {
         public string playerName;

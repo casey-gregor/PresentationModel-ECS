@@ -9,7 +9,7 @@ public class EnemyInstaller : ComponentsInstaller
     
     public override void Install()
     {
-        entity.SetData(new Health{ Value = health });
+        entity.SetData(new Health{ CurrentValue = health });
         entity.SetData(new EntityObject { Value = entity });
     }
 }

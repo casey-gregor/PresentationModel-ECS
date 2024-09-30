@@ -5,28 +5,28 @@ namespace ECSHomework
 {
     public class Pool
     {
-        private Queue<Entity> _objects;
-        private Entity _prefab;
-        private Transform _parent;
-        private Transform _world;
+        private readonly Queue<Entity> _objects;
+        private readonly Entity _prefab;
+        private readonly Transform _parent;
+        private readonly Transform _world;
 
         private int _count;
 
-        public Pool(UnitConfig config, Transform world)
+        public Pool(UnitConfig config, Transform world, Transform parent)
         {
             _objects = new Queue<Entity>();
-            _prefab = config.Prefab;
+            _prefab = config.prefab;
 
-            _parent = config.PoolParent;
+            _parent = parent;
             _world = world;
             
-            for (int i = 0; i < config.NumOfUnits; i++)
-            {
-                Entity _object = GameObject.Instantiate(_prefab, _parent);
-                _object.name = _prefab.name + _count;
-                _count++;
-                _objects.Enqueue(_object);
-            }
+            // for (int i = 0; i < config.numOfUnitsInPool; i++)
+            // {
+            //     Entity item = GameObject.Instantiate(_prefab, _parent);
+            //     item.name = _prefab.name + _count;
+            //     _count++;
+            //     _objects.Enqueue(item);
+            // }
         }
 
         public void Enqueue(Entity obj)
@@ -39,17 +39,17 @@ namespace ECSHomework
         public Entity GetObject()
         {
             _objects.TryDequeue(out Entity obj);
-            if(obj == null)
+            if (obj == null)
             {
                 obj = GameObject.Instantiate(_prefab, _parent);
                 obj.name = _prefab.name + _count;
                 _count++;
                 //Debug.Log("instantiate new : " + _object.name);
             }
+
             obj.transform.SetParent(_world);
             //Debug.Log("get : " + _object.name);
             return obj;
         }
-        
     }
 }

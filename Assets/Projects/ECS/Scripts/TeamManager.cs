@@ -5,39 +5,42 @@ namespace ECSHomework
 {
     public class TeamManager
     {
-        private Transform world;
-        private List<UnitConfig> unitConfigs;
 
-        private Dictionary<UnitType, Pool> _unitPools = new();
+        private readonly Dictionary<UnitTypes, Pool> _unitPools = new();
         
-        public TeamManager(List<UnitConfig> unitConfigs, Transform world)
+        public TeamManager(List<UnitConfig> unitConfigs, Transform world, Transform poolParent)
         {
+            
             foreach (var unitConfig in unitConfigs)
             {
-                Pool pool = new Pool(unitConfig, world);
-                _unitPools.Add(unitConfig.unitType, pool);
+                Pool pool = new Pool(unitConfig, world, poolParent);
+
+                if (!_unitPools.ContainsKey(unitConfig.type))
+                {
+                    _unitPools.Add(unitConfig.type, pool);
+                }
             }
         }
 
-        public Entity SpawnUnit(UnitType unitType, Vector3 position, Quaternion rotation)
+        public Entity SpawnUnit(UnitTypes type, Vector3 position, Quaternion rotation)
         {
-            if (_unitPools.ContainsKey(unitType))
+            if (_unitPools.TryGetValue(type, out var pool))
             {
-                Entity unit = _unitPools[unitType].GetObject();
+                Entity unit = pool.GetObject();
                 unit.transform.position = position;
                 unit.transform.rotation = rotation;
                 
                 return unit;
             }
-
+        
             return null;
         }
 
-        public void ReturnUnit(UnitType unitType, Entity unit)
+        public void ReturnUnit(UnitTypes type, Entity unit)
         {
-            if (_unitPools.ContainsKey(unitType))
+            if (_unitPools.ContainsKey(type))
             {
-                _unitPools[unitType].Enqueue(unit);
+                _unitPools[type].Enqueue(unit);
             }
         }
     }

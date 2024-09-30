@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace ECSHomework
 {
-    public class DeathRequestSystem : IEcsRunSystem
+    public sealed class DeathRequestSystem : IEcsRunSystem
     {
-        private EcsFilterInject<Inc<Health, EntityObject>, Exc<DeathRequest, Inactive>> _filter;
+        private readonly EcsFilterInject<Inc<Health>, Exc<DeathRequest, AnimatorComponent, Inactive>> _filter;
         
-        private EcsPoolInject<DeathRequest> _deathRequestPool;
+        private readonly EcsPoolInject<DeathRequest> _deathRequestPool;
          
         public void Run(EcsSystems systems)
         {
@@ -16,11 +16,10 @@ namespace ECSHomework
 
             foreach (int entity in _filter.Value)
             {
-                int health = healthPool.Get(entity).Value;
+                int currentHealth = healthPool.Get(entity).CurrentValue;
 
-                if (health <= 0)
+                if (currentHealth <= 0)
                 {
-                    // Debug.Log("Death Request : " + _deathRequestPool);
                     _deathRequestPool.Value.Add(entity) = new DeathRequest();
                 }
             }

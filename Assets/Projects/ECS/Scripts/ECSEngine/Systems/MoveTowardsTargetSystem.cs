@@ -4,20 +4,16 @@ using UnityEngine;
 
 namespace ECSHomework
 {
-    public class MoveTowardsTargetSystem : IEcsRunSystem
+    public sealed class MoveTowardsTargetSystem : IEcsRunSystem
     {
-        private EcsFilterInject<Inc<MoveDirection, TargetEntity, Position>, 
+        private readonly EcsFilterInject<Inc<MoveDirection, TargetEntity, Position, MoveSpeed>, 
                 Exc<Inactive, DeathRequest>> _filter;
-        
-        private EcsPoolInject<Rotation> _rotationPool;
             
         public void Run(EcsSystems systems)
         {
             var moveDirectionPool = _filter.Pools.Inc1;
             var targetPool = _filter.Pools.Inc2;
             var positionPool = _filter.Pools.Inc3;
-
-            var rotationPool = _rotationPool.Value;
 
             foreach (var entity in _filter.Value)
             {

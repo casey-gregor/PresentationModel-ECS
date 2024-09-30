@@ -9,10 +9,14 @@ namespace ECSHomework
 {
     public sealed class EcsStartup : MonoBehaviour
     {
+        // public event Action<int, UnitType, Entity> UnitEnqueueEvent;
+        // public event Action<Entity> GetUnitEvent;
+        
         private EcsSystems _systems;
         private EcsWorld _world;
         private EcsWorld _eventsWorld;
         private EntityManager _entityManager;
+        
       
         private void Awake () 
         {    
@@ -23,21 +27,51 @@ namespace ECSHomework
             _entityManager = new EntityManager();
             _systems
                 //Game Logic
+                .Add(new TeamManagerSystem())
+                .Add(new SpawnUnitRequestSystem())
+                .Add(new SpawnUnitsSystem())
+                .Add(new CheckGameOverSystem())
+                
+                .Add(new CheckIfCanMove())
                 .Add(new MoveTowardsTargetSystem())
                 .Add(new RotateTowardsTargetSystem())
-                // .Add(new IdentifyAttackDistanceSystem())
                 .Add(new MovementSystem())
+                
+                .Add(new CheckIfCanAttackSystem())
+                .Add(new MeleeAttackSystem())
+                .Add(new FireRequestSystem())
+                .Add(new FireEventSystem())
+                .Add(new TrajectoryCalculationSystem())
+                .Add(new ProjectileRotationSystem())
+                
                 .Add(new DealDamageSystem())
-                .Add(new CheckTargetAlive())
-                // .Add(new FireRequestSystem())
-                // .Add(new BulletSpawnSystem())
+                .Add(new GetDamageSystem())
+                
+                .Add(new RequestSetEntityInactive())
+                .Add(new DeathAnimationRequestSystem())
                 .Add(new DeathRequestSystem())
-                .Add(new DeathEventSystem())
-                
-                
                 
                 //Game View
                 .Add(new TransformViewSystem())
+                .Add(new IsMovingCheckSystem())
+                .Add(new AttackAnimationCheckSystem())
+                .Add(new TakeDamageAnimationCheckSystem())
+                .Add(new AnimationBoolParametersProcessingSystem())
+                
+                //VFX
+                .Add(new ApplyFireVFXs())
+                .Add(new ApplyBloodVFX())
+                .Add(new ApplyHurtSound())
+                .Add(new ApplyWeaponSound())
+                .Add(new ApplyFireSound())
+                .Add(new ApplyExplosionSound())
+                
+                .Add(new DeactivateDestroyedBaseSystem())
+                .Add(new ReturnDeadEntityToPoolSystem())
+                .Add(new SetEntityInactive())
+                
+                //Cleanup
+                .Add(new OneFrameSystem())
                 //Unity Editor
 #if UNITY_EDITOR
                 .Add (new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem ())
@@ -58,8 +92,6 @@ namespace ECSHomework
         {
             if (_systems != null) {
                 _systems.Destroy ();
-                // add here cleanup for custom worlds, for example:
-                // _systems.GetWorld ("events").Destroy ();
                 _systems.GetWorld ().Destroy ();
                 _systems = null;
             }

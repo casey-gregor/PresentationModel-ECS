@@ -1,14 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ECSHomework
 {
-    [CreateAssetMenu(fileName = "NewUnit", menuName = "Units/New Unit", order = 0)]
+    [CreateAssetMenu(fileName = "NewUnitConfig", menuName = "Units/New UnitConfig", order = 0)]
     public class UnitConfig : ScriptableObject
     {
         public Teams team;
-        public UnitType unitType;
-        public Entity Prefab;
-        public int NumOfUnits;
-        public Transform PoolParent;
+        public UnitTypes type;
+        public Entity prefab;
     }
 }

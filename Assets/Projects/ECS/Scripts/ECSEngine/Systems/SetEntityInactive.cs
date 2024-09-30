@@ -1,0 +1,26 @@
+﻿using Leopotam.EcsLite;
+using Leopotam.EcsLite.Di;
+using UnityEngine;
+
+namespace ECSHomework
+{
+    public class SetEntityInactive : IEcsRunSystem
+    {
+        private readonly EcsFilterInject<Inc<RequesSetInactive>> _filter;
+        
+        private readonly EcsPoolInject<Inactive> _inactivePoolEventWorld = EcsWorlds.EVENTS_WORLD;
+        private readonly EcsPoolInject<Inactive> _inactivePool;
+        
+        public void Run(EcsSystems systems)
+        {
+            EcsPool<RequesSetInactive> requestSetInactivePool = _filter.Pools.Inc1;
+
+            foreach (var entity in _filter.Value)
+            {
+                _inactivePool.Value.Add(entity);
+                // Debug.Log("in set inactive : " + entity);
+                requestSetInactivePool.Del(entity);
+            }
+        }
+    }
+}
