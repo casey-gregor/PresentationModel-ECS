@@ -7,14 +7,14 @@ namespace ECSHomework
 {
     public sealed class RotateTowardsTargetSystem : IEcsRunSystem
     {
-        private readonly EcsFilterInject<Inc<MoveAllowed, Position, TargetEntity, Rotation>> _filter;
+        private readonly EcsFilterInject<Inc<MoveAllowed, PositionComponent, TargetEntity, RotationComponent>> _filter;
         private const float RotationSpeed = 0.1f;
 
         public void Run(EcsSystems systems)
         {
-            EcsPool<Position> positionPool = _filter.Pools.Inc2;
+            EcsPool<PositionComponent> positionPool = _filter.Pools.Inc2;
             EcsPool<TargetEntity> targetEntityPool = _filter.Pools.Inc3;
-            EcsPool<Rotation> rotationPool = _filter.Pools.Inc4;
+            EcsPool<RotationComponent> rotationPool = _filter.Pools.Inc4;
 
             foreach (var entity in _filter.Value)
             {

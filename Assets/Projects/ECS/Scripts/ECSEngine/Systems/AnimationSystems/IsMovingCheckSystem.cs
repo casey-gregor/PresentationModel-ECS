@@ -8,7 +8,7 @@ namespace ECSHomework
     public sealed class IsMovingCheckSystem : IEcsRunSystem
     {
         private readonly EcsFilterInject<
-            Inc<MoveAllowed, Position, PreviousPosition, AnimatorComponent>, 
+            Inc<MoveAllowed, PositionComponent, PreviousPosition, AnimatorComponent>, 
             Exc<GameOver, Inactive, FireRequest, IsMoving>> _filter;
         
         private readonly EcsPoolInject<IsMoving> _isMovingPool;
@@ -17,12 +17,12 @@ namespace ECSHomework
         {
             foreach (var entity in _filter.Value)
             {
-                Position currentPosition = _filter.Pools.Inc2.Get(entity);
+                PositionComponent currentPositionComponent = _filter.Pools.Inc2.Get(entity);
                 ref PreviousPosition previousPosition = ref _filter.Pools.Inc3.Get(entity);
 
-                if (currentPosition.Value != previousPosition.Value)
+                if (currentPositionComponent.Value != previousPosition.Value)
                 {
-                    previousPosition.Value = currentPosition.Value;
+                    previousPosition.Value = currentPositionComponent.Value;
                     
                     _isMovingPool.Value.Add(entity);
                 }

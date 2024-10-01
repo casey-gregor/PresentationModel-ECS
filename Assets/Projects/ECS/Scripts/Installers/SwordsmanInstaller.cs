@@ -27,10 +27,10 @@ namespace ECSHomework
             Entity.SetData(new EntityObject { Value = Entity });
             Entity.SetData(new UnitTypeComponent { Value = UnitTypes.Swordsman });
             Entity.SetData(new TeamComponent { Value = team });
-            Entity.SetData(new Position {Value = transform.position} );
+            Entity.SetData(new PositionComponent {Value = transform.position} );
             Entity.SetData(new PreviousPosition {Value = transform.position});
             Entity.SetData(new MoveDirection {Value = transform.forward});
-            Entity.SetData(new Rotation {Value = transform.rotation });
+            Entity.SetData(new RotationComponent {Value = transform.rotation });
             Entity.SetData(new MoveSpeed{Value = speed});
             Entity.SetData(new TransformView {Value = transform});
             Entity.SetData(new TargetEntity());

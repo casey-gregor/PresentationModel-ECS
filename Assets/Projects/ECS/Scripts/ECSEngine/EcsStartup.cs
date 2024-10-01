@@ -30,6 +30,8 @@ namespace ECSHomework
                 .Add(new TeamManagerSystem())
                 .Add(new SpawnUnitRequestSystem())
                 .Add(new SpawnUnitsSystem())
+                
+                .Add(new InitiateWinText())
                 .Add(new CheckGameOverSystem())
                 
                 .Add(new CheckIfCanMove())
@@ -53,6 +55,9 @@ namespace ECSHomework
                 
                 //Game View
                 .Add(new TransformViewSystem())
+                .Add(new DisplayWinPanel())
+                
+                //Animation
                 .Add(new IsMovingCheckSystem())
                 .Add(new AttackAnimationCheckSystem())
                 .Add(new TakeDamageAnimationCheckSystem())
@@ -65,6 +70,8 @@ namespace ECSHomework
                 .Add(new ApplyWeaponSound())
                 .Add(new ApplyFireSound())
                 .Add(new ApplyExplosionSound())
+                .Add(new InitiateWinSound())
+                .Add(new ApplyWinSound())
                 
                 .Add(new DeactivateDestroyedBaseSystem())
                 .Add(new ReturnDeadUnitToPoolSystem())

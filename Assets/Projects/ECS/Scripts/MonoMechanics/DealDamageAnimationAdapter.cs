@@ -9,7 +9,7 @@ namespace ECSHomework
         private Entity Entity => GetComponent<Entity>();
         private void OnAttackEvent()
         {
-            Entity.SetData(new DealDamageRequest());
+            Entity.TrySetData(new DealDamageRequest());
         }
     }
 }

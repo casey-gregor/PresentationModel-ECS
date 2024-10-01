@@ -8,7 +8,7 @@ namespace ECSHomework
     {
         private readonly EcsFilterInject<Inc<UnitTypeComponent, RigidbodyComponent>> _filter;
         
-        private readonly EcsPoolInject<Rotation> _rotationPool;
+        private readonly EcsPoolInject<RotationComponent> _rotationPool;
         
         public void Run(EcsSystems systems)
         {

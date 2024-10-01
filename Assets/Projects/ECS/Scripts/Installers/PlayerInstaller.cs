@@ -14,7 +14,7 @@ namespace ECSHomework
         {
             entity.SetData(new MoveDirection());
             entity.SetData(new MoveSpeed { Value = speed });
-            entity.SetData(new Position { Value = transform.position });
+            entity.SetData(new PositionComponent { Value = transform.position });
             entity.SetData(new TransformView { Value = transform });
             entity.SetData(new ShootingWeapon { Firepoint = firePoint});
         }

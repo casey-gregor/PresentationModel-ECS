@@ -20,8 +20,8 @@ namespace ECSHomework
         private readonly EcsPoolInject<TeamManagerComponent> _teamManagerPool = EcsWorlds.EVENTS_WORLD;
         private readonly EcsPoolInject<TeamComponent> _teamComponentPool = EcsWorlds.EVENTS_WORLD;
         private readonly EcsPoolInject<UnitTypeComponent> _unitTypePool = EcsWorlds.EVENTS_WORLD;
-        private readonly EcsPoolInject<Position> _positionPool = EcsWorlds.EVENTS_WORLD;
-        private readonly EcsPoolInject<Rotation> _rotationPool = EcsWorlds.EVENTS_WORLD;
+        private readonly EcsPoolInject<PositionComponent> _positionPool = EcsWorlds.EVENTS_WORLD;
+        private readonly EcsPoolInject<RotationComponent> _rotationPool = EcsWorlds.EVENTS_WORLD;
         private readonly EcsPoolInject<TargetEntity> _targetEntityPool = EcsWorlds.EVENTS_WORLD;
 
         public void Run(EcsSystems systems)
@@ -47,8 +47,8 @@ namespace ECSHomework
                 _teamManagerPool.Value.Add(newEventEntity) = new TeamManagerComponent { Value = teamManager.Value };
                 _teamComponentPool.Value.Add(newEventEntity) = new TeamComponent { Value = team };
                 _unitTypePool.Value.Add(newEventEntity) = new UnitTypeComponent { Value = type };
-                _positionPool.Value.Add(newEventEntity) = new Position{ Value = shootingWeapon.Firepoint.position };
-                _rotationPool.Value.Add(newEventEntity) = new Rotation{ Value = shootingWeapon.Firepoint.rotation };
+                _positionPool.Value.Add(newEventEntity) = new PositionComponent{ Value = shootingWeapon.Firepoint.position };
+                _rotationPool.Value.Add(newEventEntity) = new RotationComponent{ Value = shootingWeapon.Firepoint.rotation };
                 _targetEntityPool.Value.Add(newEventEntity) = new TargetEntity() { Value = targetEntity.Value };
                 
                 fireRequestPool.Del(entity);

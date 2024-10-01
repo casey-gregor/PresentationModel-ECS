@@ -137,7 +137,7 @@ MonoBehaviour:
   canAttack: 1
   arrowPrefab: {fileID: 807521680131921547, guid: c4d16c0ee2e2c68479e81cf3f062c7d6, type: 3}
   firePoint: {fileID: 3248767859494217097}
-  health: 2
+  health: 3
   fireRate: 3
   team: 1
   animator: {fileID: -2474347030996758731}
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3109871afc3440baa48f1922b5b45fd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 0}
+  target: {fileID: 0}
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 65536

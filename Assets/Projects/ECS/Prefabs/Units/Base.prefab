@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2da0e800cc0c4adea1f4c62658e31396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5
+  health: 10
   team: 0
   smallFire: {fileID: 8435805941617088571}
   mediumFire: {fileID: 4553777287571686681}

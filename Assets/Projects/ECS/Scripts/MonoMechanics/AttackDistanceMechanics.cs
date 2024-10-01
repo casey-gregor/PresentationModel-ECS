@@ -12,27 +12,16 @@ namespace ECSHomework
         [SerializeField] private LayerMask enemyLayerMask;
 
         private Entity Entity => GetComponent<Entity>();
-        private EcsPool<ReadyForAttack> ReadyForAttackPool => Entity.World.GetPool<ReadyForAttack>();
         
         public void Update()
         {
-            // Debug.DrawLine (transform.position, transform.position + _attackDistance * transform.forward, Color.red);
-            ;
-            if (Physics.Raycast(
-                    Entity.transform.position, 
-                    Entity.transform.forward, 
-                    attackDistance,
-                    enemyLayerMask))
+            if (Physics.Raycast(Entity.transform.position, Entity.transform.forward, attackDistance, enemyLayerMask))
             {
-                // Debug.Log("found : " + hit.collider.name);
-                if (!ReadyForAttackPool.Has(Entity.Id))
-                {
-                    ReadyForAttackPool.Add(Entity.Id);
-                }
+                Entity.TrySetData(new ReadyForAttack());
             }
-            else if (ReadyForAttackPool.Has(Entity.Id))
+            else
             {
-                ReadyForAttackPool.Del(Entity.Id);
+                Entity.TryDeleteData<ReadyForAttack>();
             }
         }
     }

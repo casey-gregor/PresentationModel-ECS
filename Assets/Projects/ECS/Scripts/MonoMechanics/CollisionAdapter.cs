@@ -21,11 +21,7 @@ namespace ECSHomework
 
                 if (colliderTeam != thisObjectTeam)
                 {
-                    EcsWorld world = Entity.World;
-
-                    EcsPool<DealDamageRequest> dealDamageRequestPool = world.GetPool<DealDamageRequest>();
-                    if(!dealDamageRequestPool.Has(Entity.Id))
-                        dealDamageRequestPool.Add(Entity.Id);
+                    Entity.TrySetData(new DealDamageRequest());
                     Entity.TrySetData(new ReturnToPool());
                 }
             }

@@ -14,6 +14,7 @@ namespace ECSHomework
         private int _id = -1;
         private EcsStartup _ecsStartup;
         private EcsWorld _world;
+        
         [SerializeField] private ComponentsInstaller[] сomponentsInstallers;
 
         public void Initialize(EcsStartup ecsStartup, string worldName = null)
@@ -33,10 +34,8 @@ namespace ECSHomework
         
         private void SetupData()
         {
-            // Debug.Log(gameObject.name + " is initialized");
             if (ComponentsInstallers.Length != 0)
             {
-                // Debug.Log(gameObject.name + "components installed");
                 foreach (var installer in ComponentsInstallers)
                 {
                     installer.Install();
@@ -63,6 +62,18 @@ namespace ECSHomework
             if (!pool.Has(Id))
             {
                 pool.Add(Id) = component;
+                return true;
+            }
+            pool.Get(Id) = component;
+            return false;
+        }
+
+        public bool TryDeleteData<T>() where T : struct
+        {
+            EcsPool<T> pool = World.GetPool<T>();
+            if (pool.Has(Id))
+            {
+                pool.Del(Id);
                 return true;
             }
             return false;

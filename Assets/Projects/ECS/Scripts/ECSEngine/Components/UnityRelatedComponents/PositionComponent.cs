@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ECSHomework
 {
-    public struct Position
+    public struct PositionComponent
     {
         public Vector3 Value;
     }

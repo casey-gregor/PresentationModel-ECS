@@ -1,7 +1,9 @@
-﻿namespace ECSHomework
+﻿using System.Collections.Generic;
+
+namespace ECSHomework
 {
     public struct StartConfigComponent
     {
-       public StartConfig Value;
+       public List<UnitsParams> Value;
     }
 }

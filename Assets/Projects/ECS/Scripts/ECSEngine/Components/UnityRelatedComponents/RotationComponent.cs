@@ -3,11 +3,8 @@ using UnityEngine;
 
 namespace ECSHomework
 {
-    [Serializable]
-    public struct Rotation
+    public struct RotationComponent
     {
-
         public Quaternion Value;
-       
     }
 }

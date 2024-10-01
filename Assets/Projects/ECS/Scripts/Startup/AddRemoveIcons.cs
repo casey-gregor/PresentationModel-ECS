@@ -97,5 +97,23 @@ namespace ECSHomework
             int swordsmanCount = _redSwordsmanIcons.Count;
             _displayIconsCount.DisplayCount(archerCount, swordsmanCount);
         }
+
+        public List<GameObject> GetRedArcherList()
+        {
+            return _redArcherIcons;
+        }
+        public List<GameObject> GetBlueArcherList()
+        {
+            return _blueArcherIcons;
+        }
+        
+        public List<GameObject> GetRedSwordsmanList()
+        {
+            return _redSwordsmanIcons;
+        }
+        public List<GameObject> GetBlueSwordsmanList()
+        {
+            return _blueSwordsmanIcons;
+        }
     }
 }

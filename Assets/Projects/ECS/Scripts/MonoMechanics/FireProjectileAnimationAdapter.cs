@@ -8,7 +8,7 @@ namespace ECSHomework
         private Entity Entity => GetComponent<Entity>();
         private void OnAttackEvent()
         {
-            Entity.SetData(new FireRequest());
+            Entity.TrySetData(new FireRequest());
         }
     }
 }

@@ -7,21 +7,21 @@ namespace ECSHomework
 {
     public sealed class TransformViewSystem : IEcsRunSystem
     {
-        private readonly EcsFilterInject<Inc<TransformView, Position>> _filter;
+        private readonly EcsFilterInject<Inc<TransformView, PositionComponent>> _filter;
         
-        private readonly EcsPoolInject<Rotation> _rotationPool;
+        private readonly EcsPoolInject<RotationComponent> _rotationPool;
 
         public void Run(EcsSystems systems)
         {
-            EcsPool<Rotation> rotationPool = _rotationPool.Value;
+            EcsPool<RotationComponent> rotationPool = _rotationPool.Value;
             
             foreach (int entity in _filter.Value)
             {
                 ref TransformView view = ref _filter.Pools.Inc1.Get(entity);
                 
-                Position position = _filter.Pools.Inc2.Get(entity);
+                PositionComponent positionComponent = _filter.Pools.Inc2.Get(entity);
              
-                view.Value.position = position.Value;
+                view.Value.position = positionComponent.Value;
 
                 if (rotationPool.Has(entity))
                 {

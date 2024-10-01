@@ -8,7 +8,7 @@ namespace ECSHomework
         private Entity Entity => GetComponent<Entity>();
         private void OnDeathEvent()
         {
-            Entity.SetData(new ReturnToPool());
+            Entity.TrySetData(new ReturnToPool());
         }
     }
 }

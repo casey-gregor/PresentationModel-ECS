@@ -13,8 +13,8 @@ namespace ECSHomework
             <Inc<SpawnRequest, 
                 TeamManagerComponent, 
                 UnitTypeComponent, 
-                Position, 
-                Rotation,
+                PositionComponent, 
+                RotationComponent,
                 TeamComponent>> _filter = EcsWorlds.EVENTS_WORLD;
 
         private readonly EcsPoolInject<TargetEntity> _targetEntityPoolEventWorld = EcsWorlds.EVENTS_WORLD;
@@ -30,8 +30,8 @@ namespace ECSHomework
         {
             EcsPool<TeamManagerComponent> teamManagerPool = _filter.Pools.Inc2;
             EcsPool<UnitTypeComponent> typePool = _filter.Pools.Inc3;
-            EcsPool<Position> positionPool = _filter.Pools.Inc4;
-            EcsPool<Rotation> rotationPool = _filter.Pools.Inc5;
+            EcsPool<PositionComponent> positionPool = _filter.Pools.Inc4;
+            EcsPool<RotationComponent> rotationPool = _filter.Pools.Inc5;
             EcsPool<TeamComponent> teamComponentPool = _filter.Pools.Inc6;
             
             foreach (var spawnEvent in _filter.Value)

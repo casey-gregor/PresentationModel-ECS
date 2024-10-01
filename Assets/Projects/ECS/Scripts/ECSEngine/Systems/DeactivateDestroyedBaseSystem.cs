@@ -7,8 +7,11 @@ namespace ECSHomework
     public sealed class DeactivateDestroyedBaseSystem : IEcsRunSystem
     {
         private readonly EcsFilterInject<Inc<DeathRequest, EntityObject, IsBase>, Exc<Inactive>> _filter;
-        private readonly EcsPoolInject<UnitTypeComponent> _unitTypesPool;
-        
+
+        private readonly EcsWorldInject _eventsWorld = EcsWorlds.EVENTS_WORLD;
+
+        private readonly EcsPoolInject<OneFrame> _oneFramePool = EcsWorlds.EVENTS_WORLD;
+        private readonly EcsPoolInject<DeathRequest> _deathRequestPoolEventWorld = EcsWorlds.EVENTS_WORLD;
         
         public void Run(EcsSystems systems)
         {
@@ -17,7 +20,6 @@ namespace ECSHomework
             
             foreach (int entity in _filter.Value)
             {
-                UnitTypes type = _unitTypesPool.Value.Get(entity).Value;
                 GameObject baseObject = entityPool.Get(entity).Value.gameObject;
                 
                 GameObject meshObject = baseObject.transform.GetComponentInChildren<MeshRenderer>().gameObject;

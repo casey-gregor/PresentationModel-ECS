@@ -15,6 +15,7 @@ namespace ECSHomework
         [SerializeField] private AudioClip explodeSound;
         [SerializeField] private AudioSource audioSource;
         
+        
         public override void Install()
         {
             Entity.SetData(new EntityObject { Value = Entity });

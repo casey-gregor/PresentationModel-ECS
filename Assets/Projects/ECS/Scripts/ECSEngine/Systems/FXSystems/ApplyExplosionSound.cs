@@ -11,6 +11,7 @@ namespace ECSHomework
 
         private readonly EcsPoolInject<AudioSourceComponent> _audioSourcePool;
         private readonly EcsPoolInject<ExplodeSFX> _explodeSoundPool;
+        private readonly EcsPoolInject<Timer> _timeDelayPool;
 
         public void Run(EcsSystems systems)
         {
@@ -27,6 +28,8 @@ namespace ECSHomework
                     AudioClip explodeSound = _explodeSoundPool.Value.Get(entity).Value;
 
                     audioSource.PlayOneShot(explodeSound);
+                    
+                    _timeDelayPool.Value.Add(entity) = new Timer {Value = explodeSound.length};
                 }
             }
         }

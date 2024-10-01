@@ -7,7 +7,7 @@ namespace ECSHomework.Systems
     public sealed class MovementSystem : IEcsRunSystem
     {
         private readonly EcsFilterInject<
-            Inc<MoveAllowed, MoveDirection, MoveSpeed, Position>, 
+            Inc<MoveAllowed, MoveDirection, MoveSpeed, PositionComponent>, 
             Exc<ReadyForAttack, GameOver, Inactive>> _filter;
         
         public void Run(EcsSystems systems)
@@ -16,15 +16,15 @@ namespace ECSHomework.Systems
             
             EcsPool<MoveDirection> directionPool = _filter.Pools.Inc2;
             EcsPool<MoveSpeed> speedPool = _filter.Pools.Inc3;
-            EcsPool<Position> positionPool = _filter.Pools.Inc4;
+            EcsPool<PositionComponent> positionPool = _filter.Pools.Inc4;
             
             foreach (var entity in _filter.Value)
             {
                 MoveDirection moveDirection = directionPool.Get(entity);
                 MoveSpeed moveSpeed = speedPool.Get(entity);
-                ref Position position = ref positionPool.Get(entity);
+                ref PositionComponent positionComponent = ref positionPool.Get(entity);
                 
-                position.Value += moveDirection.Value *(moveSpeed.Value * deltaTime);
+                positionComponent.Value += moveDirection.Value *(moveSpeed.Value * deltaTime);
             }
         }
     }

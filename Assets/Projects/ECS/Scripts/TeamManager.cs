@@ -5,7 +5,6 @@ namespace ECSHomework
 {
     public class TeamManager
     {
-
         private readonly Dictionary<UnitTypes, Pool> _unitPools = new();
         
         public TeamManager(List<UnitConfig> unitConfigs, Transform world, Transform poolParent)

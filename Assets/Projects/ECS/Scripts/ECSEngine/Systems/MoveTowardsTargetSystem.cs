@@ -6,7 +6,7 @@ namespace ECSHomework
 {
     public sealed class MoveTowardsTargetSystem : IEcsRunSystem
     {
-        private readonly EcsFilterInject<Inc<MoveDirection, TargetEntity, Position, MoveSpeed>, 
+        private readonly EcsFilterInject<Inc<MoveDirection, TargetEntity, PositionComponent, MoveSpeed>, 
                 Exc<Inactive, DeathRequest>> _filter;
             
         public void Run(EcsSystems systems)
