@@ -29,28 +29,28 @@ MonoBehaviour:
     referenceMode: 2
     serializationDepthLimit: 64
     assemblyNames:
-    - Zenject
-    - UniTask
     - ES3
-    - Assembly-CSharp
-    - Tween
-    - UniTask.Linq
+    - Zenject
     - UniRx
+    - UniTask
+    - Leopotam.EcsLite.Di
+    - PPv2URPConverters
+    - Sirenix.OdinInspector.CompatibilityLayer.Editor
+    - UniTask.Linq
+    - Assembly-CSharp
+    - Leopotam.EcsLite.UnityEditor
     - Zenject-IntegrationTests
-    - UniTask.DOTween
-    - Assembly-CSharp-firstpass
     - Leopotam.EcsLite
     - UniTask.Addressables
-    - Sirenix.OdinInspector.CompatibilityLayer
-    - UniTask.TextMeshPro
-    - Leopotam.EcsLite.Di
-    - Leopotam.EcsLite.UnityEditor
-    - PPv2URPConverters
     - Zenject-TestFramework
-    - Sirenix.OdinInspector.CompatibilityLayer.Editor
+    - UniTask.TextMeshPro
+    - Tween
+    - Leopotam.EcsLite.UnityEditor.Runtime
+    - Assembly-CSharp-firstpass
     - UniTask.Editor
     - Sirenix.OdinInspector.Modules.UnityMathematics
-    - Leopotam.EcsLite.UnityEditor.Runtime
+    - Sirenix.OdinInspector.CompatibilityLayer
+    - UniTask.DOTween
     showAdvancedSettings: 1
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1
