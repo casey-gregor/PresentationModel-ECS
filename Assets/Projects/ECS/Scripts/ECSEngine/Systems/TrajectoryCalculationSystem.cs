@@ -35,7 +35,7 @@ namespace ECSHomework
                 
                 Vector3 initialVelocity = CalculateTrajectory(shootPosition, targetPosition, height);
                 
-                rbComponent.Value.velocity = initialVelocity;
+                rbComponent.Value.linearVelocity = initialVelocity;
 
                 trajectoryCalculateRequestPool.Del(entity);
             }

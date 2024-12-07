@@ -22,7 +22,7 @@ namespace ECSHomework
                 if (unitType == UnitTypes.Projectile)
                 {
                     Rigidbody rb = rigidbodyPool.Get(entity).Value;
-                    Vector3 velocity = rb.velocity;
+                    Vector3 velocity = rb.linearVelocity;
 
                     if (velocity.sqrMagnitude > 0.001f)
                     {
