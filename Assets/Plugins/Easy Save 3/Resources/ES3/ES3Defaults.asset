@@ -35,8 +35,8 @@ MonoBehaviour:
     - UniTask
     - Sirenix.OdinInspector.CompatibilityLayer.Editor
     - UniTask.Linq
-    - Zenject-IntegrationTests
     - Assembly-CSharp
+    - Zenject-IntegrationTests
     - UniTask.Addressables
     - Zenject-TestFramework
     - UniTask.TextMeshPro
