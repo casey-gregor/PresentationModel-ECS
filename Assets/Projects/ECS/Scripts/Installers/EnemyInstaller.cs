@@ -1,5 +1,4 @@
 using ECSHomework;
-using Leopotam.EcsLite;
 using UnityEngine;
 
 public class EnemyInstaller : ComponentsInstaller

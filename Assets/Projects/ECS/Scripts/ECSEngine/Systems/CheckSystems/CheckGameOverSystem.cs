@@ -17,8 +17,6 @@ namespace ECSHomework
         {
             foreach (var deadEntity in _deadFilter.Value)
             {
-                // Debug.Log("set game over");
-                
                 foreach (var entity in _aliveEntitiesFilter.Value)
                 {
                     _gameOverPool.Value.Add(entity);

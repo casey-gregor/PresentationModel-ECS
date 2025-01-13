@@ -1,5 +1,3 @@
-using Leopotam.EcsLite;
-using UnityEngine;
 using Zenject;
 
 namespace ECSHomework
