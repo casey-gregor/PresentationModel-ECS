@@ -1,9 +1,7 @@
-﻿using ECSHomework.VFX;
-using Leopotam.EcsLite;
+﻿using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
-using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public sealed class ApplyBloodVFX : IEcsRunSystem
     {

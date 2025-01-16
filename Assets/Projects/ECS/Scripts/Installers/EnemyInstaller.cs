@@ -1,4 +1,4 @@
-using ECSHomework;
+using ECSProject;
 using UnityEngine;
 
 public class EnemyInstaller : ComponentsInstaller

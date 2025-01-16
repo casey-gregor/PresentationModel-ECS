@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     [RequireComponent(typeof(Entity))]
     public abstract class ComponentsInstaller : MonoBehaviour

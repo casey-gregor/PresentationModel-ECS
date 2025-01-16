@@ -2,9 +2,9 @@
 using Leopotam.EcsLite.Di;
 using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
-    public sealed class MoveTowardsTargetSystem : IEcsRunSystem
+    public sealed class SetTargetDirectionSystem : IEcsRunSystem
     {
         private readonly EcsFilterInject<Inc<MoveDirection, TargetEntity, PositionComponent, MoveSpeed>, 
                 Exc<Inactive, DeathRequest>> _filter;

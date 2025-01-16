@@ -1,10 +1,9 @@
 ﻿using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
-using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
-    public class SetEntityInactive : IEcsRunSystem
+    public sealed class SetEntityInactive : IEcsRunSystem
     {
         private readonly EcsFilterInject<Inc<RequesSetInactive>> _filter;
         

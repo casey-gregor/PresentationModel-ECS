@@ -1,4 +1,4 @@
-﻿namespace ECSHomework.UnitManagerComponents
+﻿namespace ECSProject.UnitManagerComponents
 {
     public struct CanSpawn
     {

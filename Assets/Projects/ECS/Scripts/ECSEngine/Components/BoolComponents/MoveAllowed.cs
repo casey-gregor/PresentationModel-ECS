@@ -1,4 +1,4 @@
-﻿namespace ECSHomework
+﻿namespace ECSProject
 {
     public struct MoveAllowed
     {

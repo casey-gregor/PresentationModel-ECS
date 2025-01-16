@@ -2,7 +2,7 @@
 using Leopotam.EcsLite.Di;
 using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public sealed class MeleeAttackSystem : IEcsRunSystem
     {
@@ -12,7 +12,7 @@ namespace ECSHomework
         private readonly EcsPoolInject<Health> _healthPool;
 
         private readonly EcsWorldInject _eventsWorld = EcsWorlds.EVENTS_WORLD;
-        private readonly EcsPoolInject<IsAttacking> _isAttackingPool = EcsWorlds.EVENTS_WORLD;
+        private readonly EcsPoolInject<TriggerAttack> _triggerAttackPool = EcsWorlds.EVENTS_WORLD;
         private readonly EcsPoolInject<OneFrame> _oneFramePool = EcsWorlds.EVENTS_WORLD;
         
         public void Run(EcsSystems systems)
@@ -26,21 +26,14 @@ namespace ECSHomework
             {
                 ref float attackTimer = ref attackTimerPool.Get(entity).Value;
                 Entity targetEntity = targetEntityPool.Get(entity).Value;
-                
-
+               
                 if (targetEntity != null)
                 {
-                    int targetHealth = _healthPool.Value.Get(targetEntity.Id).CurrentValue;
-                    if(targetHealth <= 0)
-                    {
-                        attackTimer = 0;
-                        return;
-                    }
                     if (attackTimer <= 0)
                     {
                         int newEntity = _eventsWorld.Value.NewEntity();
-                        _isAttackingPool.Value.Add(newEntity) = new IsAttacking { Entity = entity };
-                        _oneFramePool.Value.Add(newEntity);
+                        _triggerAttackPool.Value.Add(newEntity) = new TriggerAttack { Entity = entity };
+                        _oneFramePool.Value.Add(newEntity);//Should be deleted after one frame
                        
                         attackTimer = _attackIntervalPool.Value.Get(entity).Value;
                     }

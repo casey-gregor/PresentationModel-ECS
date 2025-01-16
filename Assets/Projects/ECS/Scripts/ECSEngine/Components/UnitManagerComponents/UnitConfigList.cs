@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public struct UnitConfigList
     {

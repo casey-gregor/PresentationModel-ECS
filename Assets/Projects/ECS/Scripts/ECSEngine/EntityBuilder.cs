@@ -1,6 +1,6 @@
 ﻿using Leopotam.EcsLite;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public readonly struct EntityBuilder
     {

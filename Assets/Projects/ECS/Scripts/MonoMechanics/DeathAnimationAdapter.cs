@@ -1,7 +1,7 @@
 ﻿using Projects.ECS.Scripts.ECSEngine.Components.UnitManagerComponents;
 using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public class DeathAnimationAdapter : MonoBehaviour
     {

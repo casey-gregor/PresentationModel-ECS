@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ECSHomework.VFX
+namespace ECSProject.VFX
 {
     public struct BuildingDestroyVFX
     {

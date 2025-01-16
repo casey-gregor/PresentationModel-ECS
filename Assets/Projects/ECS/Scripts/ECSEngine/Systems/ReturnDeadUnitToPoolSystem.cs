@@ -1,9 +1,8 @@
 ﻿using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using Projects.ECS.Scripts.ECSEngine.Components.UnitManagerComponents;
-using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public sealed class ReturnDeadUnitToPoolSystem : IEcsRunSystem
     {

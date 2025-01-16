@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ECSHomework
+namespace ECSProject
 {
     [Serializable]
     public struct MoveSpeed 

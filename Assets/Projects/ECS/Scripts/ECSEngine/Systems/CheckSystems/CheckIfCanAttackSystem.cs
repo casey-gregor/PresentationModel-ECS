@@ -1,13 +1,13 @@
 ﻿using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public sealed class CheckIfCanAttackSystem : IEcsRunSystem
     {
-        private readonly EcsFilterInject<Inc<CanAttack>> _filter;
+        private readonly EcsFilterInject<Inc<CanAttack>> _filter;//Is a parameter set on start
 
-        private readonly EcsPoolInject<AttackAllowed> _attackAllowedPool;
+        private readonly EcsPoolInject<AttackAllowed> _attackAllowedPool;//Is a parameter used in Systems to check
         
         public void Run(EcsSystems systems)
         {

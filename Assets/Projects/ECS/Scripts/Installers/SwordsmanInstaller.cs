@@ -3,7 +3,7 @@ using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public class SwordsmanInstaller : ComponentsInstaller
     {

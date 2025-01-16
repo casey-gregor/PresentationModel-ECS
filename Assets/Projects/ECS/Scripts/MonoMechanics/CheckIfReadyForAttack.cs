@@ -3,10 +3,10 @@ using Leopotam.EcsLite;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace ECSHomework
+namespace ECSProject
 {
     [RequireComponent (typeof (Entity))]
-    public class AttackDistanceMechanics: MonoBehaviour
+    public class CheckIfReadyForAttack: MonoBehaviour
     {
         [SerializeField] private float attackDistance;
         [SerializeField] private LayerMask enemyLayerMask;

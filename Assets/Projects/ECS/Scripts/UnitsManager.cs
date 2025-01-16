@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using ECSHomework.UnitManagerComponents;
+using ECSProject.UnitManagerComponents;
 using UnityEngine;
 using Zenject;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public class UnitsManager : MonoBehaviour
     {

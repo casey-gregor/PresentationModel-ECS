@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public class WinPanelInstaller : ComponentsInstaller
     {

@@ -2,13 +2,13 @@
 using Leopotam.EcsLite.Di;
 using UnityEngine;
 
-namespace ECSHomework.Systems
+namespace ECSProject.Systems
 {
-    public sealed class MovementSystem : IEcsRunSystem
+    public sealed class MoveToDirectionSystem : IEcsRunSystem
     {
         private readonly EcsFilterInject<
             Inc<MoveAllowed, MoveDirection, MoveSpeed, PositionComponent>, 
-            Exc<ReadyForAttack, GameOver, Inactive>> _filter;
+            Exc<ReadyForAttack, IsAttacking, GameOver, Inactive>> _filter;
         
         public void Run(EcsSystems systems)
         {

@@ -1,9 +1,9 @@
-﻿using ECSHomework.VFX;
+﻿using ECSProject.VFX;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public sealed class ApplyFireVFXs : IEcsRunSystem
     {
@@ -15,6 +15,9 @@ namespace ECSHomework
         private readonly EcsPoolInject<BuildingDestroyVFX> _buildingDestroyVFXPool;
         private readonly EcsPoolInject<TeamComponent> _teamComponentPool;
         private readonly EcsPoolInject<EntityObject> _entityObjectPool;
+        
+        private readonly EcsPoolInject<Timer> _timeDelayPool;
+        
         public void Run(EcsSystems systems)
         {
             EcsPool<Health> healthPool = _filter.Pools.Inc1;

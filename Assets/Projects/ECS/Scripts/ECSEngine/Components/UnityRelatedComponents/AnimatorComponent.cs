@@ -1,7 +1,7 @@
 ﻿using UnityEditor.Animations;
 using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public struct AnimatorComponent
     {

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-namespace ECSHomework
+namespace ECSProject
 {
     public class UserGuideController : MonoBehaviour
     {

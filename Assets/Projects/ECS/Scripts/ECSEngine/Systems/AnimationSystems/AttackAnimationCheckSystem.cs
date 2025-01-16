@@ -2,30 +2,36 @@
 using Leopotam.EcsLite.Di;
 using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public sealed class AttackAnimationCheckSystem : IEcsRunSystem
     {
-        private static readonly int AttackingAnimationParameter = Animator.StringToHash("Attack");
+        private static readonly int AttackAnimationParameter = Animator.StringToHash("Attack");
 
         private readonly EcsFilterInject<
-            Inc<IsAttacking>,
+            Inc<TriggerAttack>,
             Exc<GameOver, Inactive>> _filter = EcsWorlds.EVENTS_WORLD;
+        
+        private readonly EcsPoolInject<IsAttacking> _isAttackingPool;
 
         private readonly EcsPoolInject<AnimatorComponent> _animatorPool;
         
         public void Run(EcsSystems systems)
         {
-            EcsPool<IsAttacking> isAttackingPool = _filter.Pools.Inc1;
+            EcsPool<TriggerAttack> triggerAttackPool = _filter.Pools.Inc1;
             
             foreach (int entity in _filter.Value)
             {
-                int attackingEntity = isAttackingPool.Get(entity).Entity;
+                int attackingEntity = triggerAttackPool.Get(entity).Entity;
                 
                 Animator animator = _animatorPool.Value.Get(attackingEntity).Value;
                 
-                animator.SetTrigger(AttackingAnimationParameter);
-                
+                animator.SetTrigger(AttackAnimationParameter);
+
+                if (!_isAttackingPool.Value.Has(attackingEntity))
+                {
+                    _isAttackingPool.Value.Add(attackingEntity);
+                }
             }
         }
     }

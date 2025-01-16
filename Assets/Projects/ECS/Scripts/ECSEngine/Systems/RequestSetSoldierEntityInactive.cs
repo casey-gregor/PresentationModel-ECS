@@ -1,14 +1,13 @@
 ﻿using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
-using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
-    public class RequestSetEntityInactive : IEcsRunSystem
+    public sealed class RequestSetSoldierEntityInactive : IEcsRunSystem
     {
-        private readonly EcsFilterInject<Inc<Health>, Exc<Inactive>> _filter;
+        private readonly EcsFilterInject<Inc<Health>, Exc<Inactive, IsBase>> _filter;
         
-        private readonly EcsPoolInject<RequesSetInactive> _requesSetInactivePool;
+        private readonly EcsPoolInject<RequesSetInactive> _requestSetInactivePool;
         
         public void Run(EcsSystems systems)
         {
@@ -19,7 +18,7 @@ namespace ECSHomework
                 
                 if (currentHealth <= 0)
                 {
-                    _requesSetInactivePool.Value.Add(entity);
+                    _requestSetInactivePool.Value.Add(entity);
                 }
             }
         }

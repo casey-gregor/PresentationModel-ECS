@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public struct RotationComponent
     {

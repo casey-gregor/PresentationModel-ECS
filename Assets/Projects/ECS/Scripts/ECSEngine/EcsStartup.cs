@@ -1,11 +1,11 @@
 using System;
-using ECSHomework.Systems;
+using ECSProject.Systems;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using Projects.ECS.Scripts.ECSEngine.Systems;
 using UnityEngine;
-using Zenject;
 
-namespace ECSHomework 
+namespace ECSProject 
 {
     public sealed class EcsStartup : MonoBehaviour
     {
@@ -31,13 +31,14 @@ namespace ECSHomework
                 .Add(new SpawnUnitRequestSystem())
                 .Add(new SpawnUnitsSystem())
                 
-                .Add(new InitiateWinText())
                 .Add(new CheckGameOverSystem())
+                .Add(new InitiateWinText())
                 
                 .Add(new CheckIfCanMove())
-                .Add(new MoveTowardsTargetSystem())
+                .Add(new ResetAttackTimerSystem())
+                .Add(new SetTargetDirectionSystem())
                 .Add(new RotateTowardsTargetSystem())
-                .Add(new MovementSystem())
+                .Add(new MoveToDirectionSystem())
                 
                 .Add(new CheckIfCanAttackSystem())
                 .Add(new MeleeAttackSystem())
@@ -49,7 +50,7 @@ namespace ECSHomework
                 .Add(new DealDamageSystem())
                 .Add(new GetDamageSystem())
                 
-                .Add(new RequestSetEntityInactive())
+                .Add(new RequestSetSoldierEntityInactive())
                 .Add(new DeathAnimationRequestSystem())
                 .Add(new DeathRequestSystem())
                 
@@ -74,6 +75,7 @@ namespace ECSHomework
                 .Add(new ApplyWinSound())
                 
                 .Add(new DeactivateDestroyedBaseSystem())
+                .Add(new DelayedCheckSystem())
                 .Add(new ReturnDeadUnitToPoolSystem())
                 .Add(new SetEntityInactive())
                 

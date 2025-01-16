@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace ECSHomework
+namespace ECSProject
 {
     [CreateAssetMenu(fileName = "NewUnitConfig", menuName = "Units/New UnitConfig", order = 0)]
     public class UnitConfig : ScriptableObject

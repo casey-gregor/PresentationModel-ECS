@@ -1,9 +1,6 @@
-﻿using System;
-using Leopotam.EcsLite;
-using UnityEngine;
-using UnityEngine.Serialization;
+﻿using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     [RequireComponent(typeof(Entity))]
     public class FindTargetMechanics : MonoBehaviour
@@ -34,8 +31,8 @@ namespace ECSHomework
                             target = colliderObj.gameObject.transform;
                         }
                     }
-                    target.TryGetComponent<Entity>(out var targetEntity);
-
+                    var targetEntity = target.GetComponentInParent<Entity>();
+                    
                     if (targetEntity != null)
                     {
                         Entity.TrySetData(new TargetEntity { Value = targetEntity });

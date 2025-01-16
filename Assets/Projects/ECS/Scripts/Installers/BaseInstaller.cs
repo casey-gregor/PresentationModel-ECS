@@ -1,7 +1,7 @@
-﻿using ECSHomework.VFX;
+﻿using ECSProject.VFX;
 using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public class BaseInstaller : ComponentsInstaller
     {
@@ -10,6 +10,8 @@ namespace ECSHomework
         [SerializeField] private ParticleSystem smallFire;
         [SerializeField] private ParticleSystem mediumFire;
         [SerializeField] private ParticleSystem buildingDestroy;
+        [SerializeField] private Collider baseCollider;
+        [SerializeField] private MeshRenderer meshRenderer;
 
         [SerializeField] private AudioClip fireSound;
         [SerializeField] private AudioClip explodeSound;
@@ -23,6 +25,8 @@ namespace ECSHomework
             Entity.SetData(new TeamComponent { Value = team });
             Entity.SetData(new Health { InitialValue = health, CurrentValue = health });
             Entity.SetData(new IsBase());
+            Entity.SetData(new ColliderComponent { Value = baseCollider });
+            Entity.SetData(new MeshRendererComponent { Value = meshRenderer });
             
             Entity.SetData(new FireSmallVFX { Value = smallFire });
             Entity.SetData(new FireMediumVFX { Value = mediumFire });

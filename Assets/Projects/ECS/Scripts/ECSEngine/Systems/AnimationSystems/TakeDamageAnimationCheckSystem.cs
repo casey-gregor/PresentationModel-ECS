@@ -2,9 +2,9 @@
 using Leopotam.EcsLite.Di;
 using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
-    public class TakeDamageAnimationCheckSystem : IEcsRunSystem
+    public sealed class TakeDamageAnimationCheckSystem : IEcsRunSystem
     {
         private static readonly int TakeDamageAnimationParameter = Animator.StringToHash("Damaged");
 

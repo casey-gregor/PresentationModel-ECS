@@ -1,4 +1,4 @@
-using ECSHomework;
+using ECSProject;
 using Leopotam.EcsLite;
 using UnityEngine;
 

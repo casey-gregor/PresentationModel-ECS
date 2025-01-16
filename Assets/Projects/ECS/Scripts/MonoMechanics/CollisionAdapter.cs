@@ -2,7 +2,7 @@
 using Projects.ECS.Scripts.ECSEngine.Components.UnitManagerComponents;
 using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     [RequireComponent(typeof(Entity))]
     public class CollisionAdapter : MonoBehaviour

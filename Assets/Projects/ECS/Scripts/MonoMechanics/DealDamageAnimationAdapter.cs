@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     [RequireComponent(typeof(Entity))]
     public class DealDamageAnimationAdapter : MonoBehaviour

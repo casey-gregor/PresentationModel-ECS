@@ -1,5 +1,5 @@
 ﻿
-namespace ECSHomework
+namespace ECSProject
 {
     public enum Teams
     {

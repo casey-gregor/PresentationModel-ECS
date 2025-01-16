@@ -2,7 +2,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public class ProjectileInstaller : ComponentsInstaller
     {

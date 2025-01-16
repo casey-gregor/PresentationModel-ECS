@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public struct WeaponSFX
     {

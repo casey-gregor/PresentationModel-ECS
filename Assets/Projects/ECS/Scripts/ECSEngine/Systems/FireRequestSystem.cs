@@ -2,7 +2,7 @@
 using Leopotam.EcsLite.Di;
 using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public sealed class FireRequestSystem : IEcsRunSystem
     {
@@ -13,7 +13,7 @@ namespace ECSHomework
         private readonly EcsPoolInject<Health> _healthPool;
         
         private readonly EcsWorldInject _eventWorld = EcsWorlds.EVENTS_WORLD;
-        private readonly EcsPoolInject<IsAttacking> _isAttackingPool = EcsWorlds.EVENTS_WORLD;
+        private readonly EcsPoolInject<TriggerAttack> _isAttackingPool = EcsWorlds.EVENTS_WORLD;
         private readonly EcsPoolInject<OneFrame> _oneFramePool = EcsWorlds.EVENTS_WORLD;
         
         private float _timer;
@@ -44,7 +44,7 @@ namespace ECSHomework
                     if (attackTimer <= 0)
                     {
                         int newEntity = _eventWorld.Value.NewEntity();
-                        _isAttackingPool.Value.Add(newEntity) = new IsAttacking { Entity = entity };
+                        _isAttackingPool.Value.Add(newEntity) = new TriggerAttack { Entity = entity };
                         _oneFramePool.Value.Add(newEntity);
         
                         attackTimer = shootingWeaponPool.Get(entity).FireRate;

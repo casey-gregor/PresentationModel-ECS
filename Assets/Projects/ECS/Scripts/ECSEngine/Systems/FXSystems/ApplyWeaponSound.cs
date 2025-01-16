@@ -2,18 +2,18 @@
 using Leopotam.EcsLite.Di;
 using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public sealed class ApplyWeaponSound : IEcsRunSystem
     {
-        private readonly EcsFilterInject<Inc<IsAttacking>> _filter = EcsWorlds.EVENTS_WORLD;
+        private readonly EcsFilterInject<Inc<TriggerAttack>> _filter = EcsWorlds.EVENTS_WORLD;
 
         private readonly EcsPoolInject<AudioSourceComponent> _audioPool;
         private readonly EcsPoolInject<WeaponSFX> _weaponSFXPool;
         
         public void Run(EcsSystems systems)
         {
-            EcsPool<IsAttacking> isAttackingPool = _filter.Pools.Inc1;
+            EcsPool<TriggerAttack> isAttackingPool = _filter.Pools.Inc1;
 
             foreach (var entity in _filter.Value)
             {

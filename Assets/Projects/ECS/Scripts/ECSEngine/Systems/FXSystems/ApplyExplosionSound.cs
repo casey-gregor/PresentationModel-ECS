@@ -2,7 +2,7 @@
 using Leopotam.EcsLite.Di;
 using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public sealed class ApplyExplosionSound : IEcsRunSystem
     {
@@ -19,10 +19,9 @@ namespace ECSHomework
 
             foreach (var entity in _filter.Value)
             {
-
                 int currentHealth = healthPool.Get(entity).CurrentValue;
 
-                if (currentHealth == 0)
+                if (currentHealth <= 0)
                 {
                     AudioSource audioSource = _audioSourcePool.Value.Get(entity).Value;
                     AudioClip explodeSound = _explodeSoundPool.Value.Get(entity).Value;

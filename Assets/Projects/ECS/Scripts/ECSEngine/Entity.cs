@@ -1,8 +1,7 @@
-﻿using System.Diagnostics.Tracing;
-using Leopotam.EcsLite;
+﻿using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public class Entity : MonoBehaviour
     {

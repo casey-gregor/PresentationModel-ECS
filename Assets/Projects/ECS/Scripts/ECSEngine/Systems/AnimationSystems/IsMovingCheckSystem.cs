@@ -1,9 +1,7 @@
 ﻿using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
-using Unity.VisualScripting;
-using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public sealed class IsMovingCheckSystem : IEcsRunSystem
     {

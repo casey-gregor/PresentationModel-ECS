@@ -1,7 +1,5 @@
 ﻿
-using Leopotam.EcsLite;
-
-namespace ECSHomework
+namespace ECSProject
 {
     public static class EcsWorlds
     {

@@ -514,13 +514,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463166444}
     m_Modifications:
+    - target: {fileID: 36777636116128076, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 96131464911517415, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
       propertyPath: team
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 96131464911517415, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
       propertyPath: health
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 96131464911517415, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
       propertyPath: winSound
@@ -534,6 +538,14 @@ PrefabInstance:
       propertyPath: team.m_Bits
       value: 32768
       objectReference: {fileID: 0}
+    - target: {fileID: 96131464911517415, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
+      propertyPath: baseCollider
+      value: 
+      objectReference: {fileID: 1377546062}
+    - target: {fileID: 96131464911517415, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
+      propertyPath: meshRenderer
+      value: 
+      objectReference: {fileID: 752195037}
     - target: {fileID: 537273405448026616, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
       propertyPath: m_Name
       value: FlagColliderLeft
@@ -1615,6 +1627,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725587989}
   m_CullTransparentMesh: 1
+--- !u!23 &752195037 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7657002863766446057, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
+  m_PrefabInstance: {fileID: 254118204}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &783612702
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3148,6 +3165,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1363224974}
   m_CullTransparentMesh: 1
+--- !u!65 &1377546062 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 1414564196697343197, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
+  m_PrefabInstance: {fileID: 254118204}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1443352024
 GameObject:
   m_ObjectHideFlags: 0
@@ -3932,6 +3954,11 @@ MonoBehaviour:
   restrictedAreas:
   - {fileID: 524675026}
   - {fileID: 1542601985}
+--- !u!23 &1670085617 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7657002863766446057, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
+  m_PrefabInstance: {fileID: 7657002863243684347}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1723210315
 GameObject:
   m_ObjectHideFlags: 0
@@ -5305,6 +5332,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2088755433}
   m_CullTransparentMesh: 1
+--- !u!65 &2099246516 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 1414564196697343197, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
+  m_PrefabInstance: {fileID: 7657002863243684347}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4911757767394253541
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5573,13 +5605,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 463166444}
     m_Modifications:
+    - target: {fileID: 36777636116128076, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 96131464911517415, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
       propertyPath: team
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 96131464911517415, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
       propertyPath: health
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 96131464911517415, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
       propertyPath: winSound
@@ -5593,6 +5629,14 @@ PrefabInstance:
       propertyPath: team.m_Bits
       value: 65536
       objectReference: {fileID: 0}
+    - target: {fileID: 96131464911517415, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
+      propertyPath: baseCollider
+      value: 
+      objectReference: {fileID: 2099246516}
+    - target: {fileID: 96131464911517415, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
+      propertyPath: meshRenderer
+      value: 
+      objectReference: {fileID: 1670085617}
     - target: {fileID: 537273405448026616, guid: 7abfb19faaf1147e9816d9c6709f4689, type: 3}
       propertyPath: m_Name
       value: FlagColliderLeft

@@ -3,7 +3,7 @@ using Leopotam.EcsLite.Di;
 using TMPro;
 using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public class DisplayWinPanel : IEcsRunSystem
     {

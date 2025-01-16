@@ -1,9 +1,8 @@
-﻿using ECSHomework.UnitManagerComponents;
-using Leopotam.EcsLite;
+﻿using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public sealed class SpawnUnitsSystem : IEcsRunSystem
     {

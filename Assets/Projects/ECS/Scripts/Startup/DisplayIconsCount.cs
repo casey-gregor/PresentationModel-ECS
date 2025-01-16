@@ -1,6 +1,6 @@
 ﻿using TMPro;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public class DisplayIconsCount
     {

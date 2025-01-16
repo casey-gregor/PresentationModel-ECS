@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace ECSHomework.Startup
+namespace ECSProject.Startup
 {
     public class DragNDrop : MonoBehaviour
     {

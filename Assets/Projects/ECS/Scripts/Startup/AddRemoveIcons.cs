@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 
-namespace ECSHomework
+namespace ECSProject
 {
     public class AddRemoveIcons : MonoBehaviour
     {

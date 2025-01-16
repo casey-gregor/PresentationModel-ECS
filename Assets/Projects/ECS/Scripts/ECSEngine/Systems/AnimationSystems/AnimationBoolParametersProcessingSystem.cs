@@ -2,9 +2,9 @@
 using Leopotam.EcsLite.Di;
 using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
-    public class AnimationBoolParametersProcessingSystem : IEcsRunSystem
+    public sealed class AnimationBoolParametersProcessingSystem : IEcsRunSystem
     {
         private readonly EcsFilterInject<Inc<AnimatorComponent>> _filter;
 

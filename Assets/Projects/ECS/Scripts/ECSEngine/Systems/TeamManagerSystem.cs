@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using ECSHomework.UnitManagerComponents;
+using ECSProject.UnitManagerComponents;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public sealed class TeamManagerSystem : IEcsRunSystem
     {

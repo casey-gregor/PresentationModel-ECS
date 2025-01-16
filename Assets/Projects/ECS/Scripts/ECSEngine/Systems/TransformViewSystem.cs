@@ -1,9 +1,8 @@
 ﻿using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
-using Sirenix.Utilities;
 using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public sealed class TransformViewSystem : IEcsRunSystem
     {

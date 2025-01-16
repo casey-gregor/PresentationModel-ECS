@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public class StartGame : MonoBehaviour
     {

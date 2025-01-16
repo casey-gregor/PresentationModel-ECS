@@ -1,13 +1,13 @@
-﻿using ECSHomework;
-using Leopotam.EcsLite;
+﻿using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public sealed class RotateTowardsTargetSystem : IEcsRunSystem
     {
-        private readonly EcsFilterInject<Inc<MoveAllowed, PositionComponent, TargetEntity, RotationComponent>> _filter;
+        private readonly EcsFilterInject<Inc<MoveAllowed, PositionComponent, TargetEntity, RotationComponent>,
+        Exc<IsAttacking>> _filter;
         private const float RotationSpeed = 0.1f;
 
         public void Run(EcsSystems systems)

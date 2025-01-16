@@ -1,6 +1,6 @@
 using Zenject;
 
-namespace ECSHomework
+namespace ECSProject
 {
     public class ZenjectInstaller : MonoInstaller
     {

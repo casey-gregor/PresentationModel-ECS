@@ -3,7 +3,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace ECSHomework
+namespace ECSProject
 {
     [Serializable]
     public class UnitsParams
