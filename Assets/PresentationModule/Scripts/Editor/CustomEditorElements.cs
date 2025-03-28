@@ -10,7 +10,7 @@ namespace Lessons.Architecture.PM
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
-
+        
             var actionHelper = (ActionHelper)target;
             if(GUILayout.Button("Show Popup"))
             {

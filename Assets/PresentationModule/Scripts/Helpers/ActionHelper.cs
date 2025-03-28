@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
 
@@ -23,13 +24,13 @@ namespace Lessons.Architecture.PM
             this.presenterFactory = presenterFactory;
             this.xpController = xpController;
         }
-
+        
         public void ShowPopup()
         {
             IBigPresenter presenter = this.presenterFactory.CreatePresenter(this.playerConfig);
             this.popupView.ShowPopup(presenter);
         }
-
+        
         public void AddXP(int value)
         {
             this.xpController.UpdateXP(value);

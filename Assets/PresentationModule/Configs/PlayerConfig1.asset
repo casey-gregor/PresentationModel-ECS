@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerConfig1
   m_EditorClassIdentifier: 
   playerName: Vasiliy
-  playerDescription: The best samogon maker
+  playerDescription: The best warrior in West
   playerAvatar: {fileID: 21300000, guid: 954d79ad0f5124da59b33552ab47a641, type: 3}
   playerExperience: 50
   statsArray:
